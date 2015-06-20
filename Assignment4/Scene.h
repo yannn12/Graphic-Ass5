@@ -3,6 +3,7 @@
 #include "Vector3f.h"
 #include "glut.h"
 #include <vector>
+#include "object3d.h"
 
 using namespace std;
 
@@ -10,27 +11,9 @@ using namespace std;
 
 #define W_HEIGHT 512
 
-typedef struct Face{
-	vector<int>  *vertice;
-	vector<int>  *normal;
-};
 
-typedef struct Group{
 
-	int name;
-	vector<Face> *faces;
-};
-
-typedef struct Point{
-
-	int x;
-	int y;
-};
-
-typedef struct object3D{ 
-	int name;
-	vector<Group*> *groups;
-};
+ 
 
 typedef struct Vector2f{ 
 	float x;

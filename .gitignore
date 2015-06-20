@@ -4,3 +4,5 @@ Assignment4.sdf
 Debug/
 Assignment4/Debug
 *.suo
+*.vcx*
+*.obj
