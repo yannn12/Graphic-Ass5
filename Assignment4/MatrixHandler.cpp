@@ -4,7 +4,7 @@
 
  
 #include <glm/glm.hpp>
-#include "glut.h"
+//#include "glut.h"
 extern Scene scene;
 
 static Vector3f zeroVec(0, 0, 0);

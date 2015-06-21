@@ -48,6 +48,10 @@ void CameraMode::mouseMotion(int x, int y){
 }
 
 
+
+void CameraMode::processNormalKeys(unsigned char key, int x, int y){}
+void CameraMode::processSpecialKeys(int key, int xx, int yy){}
+
 CameraMode::CameraMode(Scene& scene) : State(scene)
 {
 }

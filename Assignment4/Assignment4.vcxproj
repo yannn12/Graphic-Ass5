@@ -69,7 +69,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CameraMode.h" />
+    <ClInclude Include="drawing.h" />
     <ClInclude Include="GlobalMode.h" />
+    <ClInclude Include="PickMode.h" />
     <ClInclude Include="Keybaord.h" />
     <ClInclude Include="MatrixHandler.h" />
     <ClInclude Include="Mouse.h" />
@@ -80,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CameraMode.cpp" />
+    <ClCompile Include="drawing.cpp" />
     <ClCompile Include="GlobalMode.cpp" />
     <ClCompile Include="Keybaord.cpp" />
     <ClCompile Include="MatrixHandler.cpp" />
@@ -87,6 +90,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parser.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="m2.cpp" />
+    <ClCompile Include="PickMode.cpp" />
     <ClCompile Include="State.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

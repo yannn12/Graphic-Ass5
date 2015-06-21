@@ -27,27 +27,33 @@ void resetAllMatrices(){
 	scene.scaleFactor = 1;
 }
 
-void switchState(){
-	if (ScaneState == &CameraState){
-		ScaneState = &GlobalState;
-	}
-	else{
-		ScaneState = &CameraState;
-	}
-}
+//void switchState(){
+//	if (ScaneState == &CameraState){
+//		ScaneState = &GlobalState;
+//	}
+//	else{
+//		ScaneState = &CameraState;
+//	}
+//}
 
 
 void processNormalKeys(unsigned char key, int x, int y)
 {
 	switch (key) {
-	case ' ':
-		switchState();
+
+	case 'c':
+		ScaneState = &CameraState;
 		break;
-	case 'r':
+	case 'g':
+		ScaneState = &GlobalState;
+		break;
+
+	case 8: // backSpace
 		resetAllMatrices();
 		break;
-
-
+	default: 
+		ScaneState->processNormalKeys(key, x, y);
+		break;
 	}
 }
 
@@ -91,5 +97,9 @@ void processSpecialKeys(int key, int xx, int yy){
 		scene.scaleFactor /= SCALE_FACTOR;
 		printf("scale factor: %f\n", scene.scaleFactor);
 		break;
+	default:
+		ScaneState->processSpecialKeys(key, xx, yy);
+		break;
+
 	}
 }

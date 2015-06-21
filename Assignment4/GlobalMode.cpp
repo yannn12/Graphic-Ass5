@@ -45,6 +45,10 @@ void GlobalMode::mouseMotion(int x, int y){
 }
 
 
+
+void GlobalMode::processNormalKeys(unsigned char key, int x, int y){}
+void GlobalMode::processSpecialKeys(int key, int xx, int yy){}
+
 GlobalMode::GlobalMode(Scene& scene) :State(scene)
 {
 }

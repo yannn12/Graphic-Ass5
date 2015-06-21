@@ -1,7 +1,7 @@
 
 #include "State.h"
 #include "Mouse.h"
-#include "glut.h"
+//#include "glut.h"
 
 
 //void mouseCamera(int button, int state, int x, int y) {
@@ -39,3 +39,4 @@ void mouse(int button, int state, int x, int y)
 	ScaneState->mouse(button, state, x, y);
 
 }
+ 
