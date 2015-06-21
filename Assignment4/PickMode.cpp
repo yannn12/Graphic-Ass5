@@ -12,6 +12,28 @@ void startPicking(GLuint *selectionBuf)
 	glPushName(-1);			//push name
 }
 
+void processHits(GLint hits, GLuint *buffer, float *zValue)
+{
+	 
+	float z1, z2;
+	printf("\nbuffer\n");
+	for (int i = 0; buffer[i]>0; i += 5)
+	{
+		z1 = buffer[i + 1] / 4294967295.0;
+		z2 = buffer[i + 2] / 4294967295.0;
+
+		printf("z1 = %f ,z2 = %f zValue = %f", z1, z2, zValue[0]);
+		printf("name = %f \n",  zValue[4] );
+
+
+		//if ((zValue[0] <= z1 + 0.0001 && zValue[0] >= z2 - 0.0001) || (zValue[0] >= z1 - 0.0001 && zValue[0] <= z2 + 0.0001))
+		//{	//try to locate which name is correlated with the pressed pixel according to z value 
+		//	ii = buffer[i + 3];
+		//	jj = buffer[i + 4];
+		//}
+
+	}
+}
 
 void PickMode::mouse(int button, int state, int x, int y){
 	 
@@ -43,7 +65,7 @@ void PickMode::mouse(int button, int state, int x, int y){
 	 
 		gluPerspective(scene.fieldOfViewAngle, 1, 2, 200);//return to perspective state 
 		glMatrixMode(GL_MODELVIEW);
-	//	drawObj(GL_SELECT); //draws board on background
+		drawObj(GL_SELECT); //draws board on background
 
 
 		int hits = glRenderMode(GL_RENDER); //gets hits number 
@@ -52,7 +74,7 @@ void PickMode::mouse(int button, int state, int x, int y){
 		glPopMatrix(); //restores projection matrix
 
 		glMatrixMode(GL_MODELVIEW);
-		//processHits(hits, selectionBuf); //check hits
+		processHits(hits, selectionBuf,zValue); //check hits
 
 		//  printf("depth %f hits: %d\n\n",pixels[(viewport[3]-y)*512+x], hits);  
 	/*	if (zValue[0]<1.0)

@@ -154,7 +154,7 @@ int main(int  argc, char** argv)
 	init();
 	initLight();
 
-	ParseFile("simple.obj", scene);
+	ParseFile("doll.obj", scene);
 	glutDisplayFunc(mydisplay);
 	glutMouseFunc(mouse);
 	glutMotionFunc(mouseMotion);

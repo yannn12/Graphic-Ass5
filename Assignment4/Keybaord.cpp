@@ -2,13 +2,14 @@
 #include "State.h"
 #include "GlobalMode.h"
 #include "CameraMode.h"
+#include "PickMode.h"
 #include "glut.h"
 
 extern State * ScaneState;
 extern Scene scene;
 extern GlobalMode GlobalState;
 extern CameraMode CameraState;
-
+extern PickMode pickState;
 
 
 void resetAllMatrices(){
@@ -43,11 +44,16 @@ void processNormalKeys(unsigned char key, int x, int y)
 
 	case 'c':
 		ScaneState = &CameraState;
+		printf("camera mode.\n");
 		break;
 	case 'g':
 		ScaneState = &GlobalState;
+		printf("global mode.\n");
 		break;
-
+	case 'p':
+		printf("picking mode.\n");
+		ScaneState = &pickState;
+		break;
 	case 8: // backSpace
 		resetAllMatrices();
 		break;

@@ -45,8 +45,7 @@ void drawObj(GLenum mode){
 		int groupNum = scene.objects[o]->groups->size();
 
 		for (size_t g = 0; g < groupNum; g++){
-			if (mode == GL_SELECT)
-				glLoadName(g);
+		
 			vector<Face> *faces = scene.objects[o]->groups->at(g)->faces;
 			int facesNum = faces->size();
 			//glPushMatrix();
@@ -55,6 +54,8 @@ void drawObj(GLenum mode){
 			for (int f = 0; f < facesNum; f++){
 
 				Face *face = &faces->at(f);
+				if (mode == GL_SELECT)
+					glLoadName(g);
 				glBegin(GL_POLYGON);
 				for (int i = 0; i < face->normal->size(); i++){
 					int n = face->normal->at(i) - 1;
