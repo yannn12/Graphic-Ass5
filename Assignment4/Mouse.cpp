@@ -1,9 +1,9 @@
 
 #include "State.h"
-
-
 #include "Mouse.h"
 #include "glut.h"
+
+
 //void mouseCamera(int button, int state, int x, int y) {
 //
 //}
