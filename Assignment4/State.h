@@ -15,7 +15,7 @@ public:
 	State(Scene& scene);
 	virtual ~State(void);
 
-	virtual void processNormalKeys(unsigned char key, int x, int y);
-	virtual void processSpecialKeys(int key, int xx, int yy);
+	virtual void processNormalKeys(unsigned char key, int x, int y) =0;
+	virtual void processSpecialKeys(int key, int xx, int yy)=0;
 };
 
