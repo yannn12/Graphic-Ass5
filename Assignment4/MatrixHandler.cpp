@@ -220,3 +220,28 @@ rotate the scene
 	 return result;
 
  }
+
+
+ Vector3f comCalc(Group *group){
+	 Vector3f result(0, 0, 0);
+	 int verCount = 0;
+	 
+	 for (int j = 0; j < group->faces->size(); j++){
+		 for (int k = 0; k < group->faces->at(j).vertice->size(); k++){
+			 verCount++;
+			 int verInd = group->faces->at(j).vertice->at(k) - 1;
+			 Vector3f vertix = scene.vertices[verInd];
+			 result.x += vertix.x;
+			 result.y += vertix.y;
+			 result.z += vertix.z;
+		 }
+	 }
+ 
+ 
+	 result.x /= verCount;
+	 result.y /= verCount;
+	 result.z /= verCount;
+
+	 return result;
+
+ }

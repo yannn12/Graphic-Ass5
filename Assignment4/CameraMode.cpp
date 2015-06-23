@@ -9,7 +9,7 @@ static Vector3f zeroVec(0,0,0);
 void CameraMode::mouse(int button, int state, int x, int y){
 	if(state ==GLUT_DOWN){
 		pressState = button;
-		pressX =x;
+		pressX = x;
 		pressY = y;
 		
 	}

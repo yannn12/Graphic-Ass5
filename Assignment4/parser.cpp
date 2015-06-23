@@ -6,12 +6,14 @@
 #include <fstream>
 #include "Vector3f.h"
 #include "object3d.h"
+#include "MatrixHandler.h"
 #include "Scene.h"
 
 using namespace std;
 
 
- 
+
+void calcCenterOfmass(Scene &scene);
 
 
 /*
@@ -147,8 +149,29 @@ void ParseFile(string fileName, Scene &scene){
 
 	}
 
+	calcCenterOfmass(scene);
 	file.close();
 
+}
+
+
+void calcCenterOfmass(Scene &scene){
+
+	int objectNum = scene.objects.size();
+	
+	for (int o = 0; o < objectNum; o++){
+
+		object3D *obj = scene.objects.at(o);
+		int groupNum = obj->groups->size();
+
+		for (int g = 0; g < groupNum; g++){
+
+			Group *grp = obj->groups->at(g);
+			grp->centerOfMass = comCalc(grp);
+		}
+	}
+	 
+ 
 }
 
 

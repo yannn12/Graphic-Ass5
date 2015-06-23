@@ -15,12 +15,11 @@ class PickingList:
 {
 public:
 	/* 
-	add a uniqe pick. e.g only one entry for (object + group) key;
-	if the  (object + group) key  of the pick exist  nothing happens and the function return false, else the pick is
-	added and the function return true
+	 
+	if the  (object + group) key  of the pick exist , it is removed  from the list  and the function  return false
+	else the pick is added to the list and the function return true
 	*/ 
-	
-	bool add(pick &p);
+	bool toggle(pick &p);
 	
 	vector <Group *> * getSelectedGroups();
 	void clearPick();

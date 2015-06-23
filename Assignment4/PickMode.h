@@ -3,6 +3,8 @@
 #include "PickingList.h"
 #include <vector>
 
+typedef enum Mode{ ROTATE, SCALE, TRANSLATE};
+
 class PickMode :
 	public State
 
@@ -10,6 +12,7 @@ class PickMode :
 {
 public:
 
+	Mode mode;
 	bool press;
 	float zValue[4];
 	PickingList pickingList;
@@ -23,6 +26,7 @@ public:
 
 	virtual void processNormalKeys(unsigned char key, int x, int y);
 	virtual void processSpecialKeys(int key, int xx, int yy);
+	virtual void setMode(Mode mode);
 
 private:
 
