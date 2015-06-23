@@ -125,13 +125,17 @@ void mydisplay()
 	 
 
 
-	glEnable(GL_LIGHTING);
+
 	glPushMatrix();
 	setScale();
+	glEnable(GL_LIGHTING);
 	drawObj(GL_RENDER);
-	glPopMatrix();
 	glDisable(GL_LIGHTING);
+	drawCom();
+	glPopMatrix();
 
+	
+	
 	drawAxisLines();
 
 	glutSwapBuffers();

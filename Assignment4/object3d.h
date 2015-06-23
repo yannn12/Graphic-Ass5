@@ -2,6 +2,8 @@
 
  
 #include <vector>
+#include "Vector3f.h"
+
 using namespace std;
 
 #include <glm/glm.hpp>
@@ -16,6 +18,7 @@ public:
 	int name;
 	glm::mat4  matrix;
 	vector<Face> *faces;
+	Vector3f centerOfMass;
 	Group();
 
 };

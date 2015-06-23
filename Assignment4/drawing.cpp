@@ -48,6 +48,8 @@ void drawObj(GLenum mode){
 	//glEnable(GL_LIGHTING);
 	//glDisable(GL_COLOR_MATERIAL);
 
+	
+
 
 	for (size_t o = 0; o < objectNum; o++){
 
@@ -58,10 +60,10 @@ void drawObj(GLenum mode){
 
 			glPushMatrix();
 
-		
-			vector<Face> *faces = scene.objects[o]->groups->at(g)->faces;
+			Group * grp = scene.objects[o]->groups->at(g);
+			vector<Face> *faces = grp->faces;
 			
-			GLfloat * martix= &(scene.objects[o]->groups->at(g)->matrix[0][0]);
+			GLfloat * martix = &(grp->matrix[0][0]);
 
 			glMultMatrixf(martix);
 			int facesNum = faces->size();
@@ -86,19 +88,56 @@ void drawObj(GLenum mode){
 					glNormal3f(scene.normals[n].x, scene.normals[n].y, scene.normals[n].z);
 					glVertex3f(scene.vertices[v].x, scene.vertices[v].y, scene.vertices[v].z);
 				}
-			 
+				
 				glEnd();
+			
 
 				
 			}
 			if(mode==GL_SELECT)
 				glPopName(); 
+		/*	if (mode != GL_SELECT){
+				
+				glPopMatrix();
+				glDisable(GL_LIGHTING);
+				glPushMatrix();
 
-			glPopMatrix();
-
-
+				glTranslatef(grp->centerOfMass.x, grp->centerOfMass.y, grp->centerOfMass.z);
+				glColor3f(0.3f, 0.0f, 0.0f);
+				glutSolidSphere(1, 5, 5);
+			 
+				glPopMatrix();
+				glEnable(GL_LIGHTING);
+			}*/
 		}
+
 
 	}
 
+	
+
+}
+
+void drawCom(){
+
+		vector <Group *> * SelectedGroups;
+
+		SelectedGroups = pickState.pickingList.getSelectedGroups();
+		glClear(GL_DEPTH_BUFFER_BIT);
+		glDisable(GL_LIGHTING);
+		for (std::vector<Group *>::iterator it = SelectedGroups->begin(); it != SelectedGroups->end() ; ++it){
+			glPushMatrix();
+
+			Group * g = (*it);		 
+		 
+			glTranslatef(g->centerOfMass.x, g->centerOfMass.y, g->centerOfMass.z);
+			glColor3f(1.0f, 0.0f, 0.0f);
+			glutSolidSphere(0.3, 5, 5);
+		
+ 
+			glPopMatrix();
+		}
+		
+		
+	
 }
