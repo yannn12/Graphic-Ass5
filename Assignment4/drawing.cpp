@@ -61,9 +61,15 @@ void drawObj(GLenum mode){
 		
 			vector<Face> *faces = scene.objects[o]->groups->at(g)->faces;
 			
-			GLfloat * martix= &(scene.objects[o]->groups->at(g)->matrix[0][0]);
 
-			glMultMatrixf(martix);
+
+			GLfloat * martix= &(scene.objects[o]->groups->at(g)->matrix[0][0]);
+			GLfloat orgMat[4*4];
+
+			
+			glGetFloatv(GL_MODELVIEW_MATRIX, orgMat);
+			glLoadMatrixf(martix);
+			glMultMatrixf(orgMat);
 			int facesNum = faces->size();
 			//glPushMatrix();
 

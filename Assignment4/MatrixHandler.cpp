@@ -8,7 +8,7 @@
 extern Scene scene;
 
 static Vector3f zeroVec(0, 0, 0);
-
+ Vector3f comCalc(vector<Group*> groups);
 
 /*
 *
@@ -161,6 +161,42 @@ rotate the scene
 	}
 }
 
+  void rotateSelectedObjects(){
+	if (scene.SelectObjRotDelta.x != 0 || scene.SelectObjRotDelta.y != 0){
+		scene.selectedObjs.clear();
+		scene.selectedObjs.push_back(scene.objects[0]->groups->at(4));
+		scene.selectedObjs.push_back(scene.objects[0]->groups->at(10));
+		Vector3f comPoint = comCalc(scene.selectedObjs);
+		
+		glPushMatrix();
+		for(int i=0;i<scene.selectedObjs.size();i++){
+			glm::vec4 sceneOrgLoc(comPoint.x, comPoint.y, comPoint.z, 1.0);
+			glm::mat4 curMetrix = scene.selectedObjs[i]->matrix;
+			glLoadMatrixf(&curMetrix[0][0]);
+			//glGetFloatv(GL_MODELVIEW_MATRIX, &curMetrix[0][0]);
+			glm::vec4 sceneFixedLoc = sceneOrgLoc*curMetrix;
+			glTranslatef(sceneFixedLoc[0]* -1 ,
+				sceneFixedLoc[1]* -1,
+				sceneFixedLoc[2]* -1 );
+
+			glRotatef((scene.SelectObjRotDelta.x) * 180, 0, 1, 0);
+			glRotatef((scene.SelectObjRotDelta.y) * 180, 1, 0, 0);
+
+
+			glTranslatef(sceneFixedLoc[0],
+				sceneFixedLoc[1],
+				sceneFixedLoc[2]);
+
+			glGetFloatv(GL_MODELVIEW_MATRIX, &scene.selectedObjs[i]->matrix[0][0]);
+		}
+		scene.SelectObjRotDelta.x = 0;
+		scene.SelectObjRotDelta.y = 0;
+		glPopMatrix();
+	}
+
+
+  }
+
 
  Vector3f comCalc(vector<Group*> groups){
 	 Vector3f result(0,0,0);
@@ -169,7 +205,7 @@ rotate the scene
 		 for(int j=0;j<groups[i]->faces->size();j++){
 			 for(int k=0;k<groups[i]->faces->at(j).vertice->size();k++){
 				 verCount++;
-				 int verInd = groups[i]->faces->at(j).vertice->at(k);
+				 int verInd = groups[i]->faces->at(j).vertice->at(k)-1;
 				 Vector3f vertix = scene.vertices[verInd];
 				 result.x+= vertix.x;
 				 result.y+= vertix.y;

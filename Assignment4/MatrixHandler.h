@@ -8,3 +8,4 @@
  void rotateScene();
  void moveScene();
  void moveSelectedObjects();
+ void rotateSelectedObjects();
