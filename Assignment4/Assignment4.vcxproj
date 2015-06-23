@@ -71,6 +71,7 @@
     <ClInclude Include="CameraMode.h" />
     <ClInclude Include="drawing.h" />
     <ClInclude Include="GlobalMode.h" />
+    <ClInclude Include="object3d.h" />
     <ClInclude Include="PickMode.h" />
     <ClInclude Include="Keybaord.h" />
     <ClInclude Include="MatrixHandler.h" />
@@ -88,6 +89,7 @@
     <ClCompile Include="MatrixHandler.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="object3d.cpp" />
     <ClCompile Include="parser.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="m2.cpp" />
