@@ -24,12 +24,12 @@ public:
 	
 	vector <Group *> * getSelectedGroups();
 	void clearPick();
-	PickingList(Scene &scene);
+ 
 	PickingList();
 	~PickingList();
 
 private : 
-	vector <Group *> &selectedGroups;
+	vector <Group *> selectedGroups;
 	 
 };
 

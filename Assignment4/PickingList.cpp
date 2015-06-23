@@ -8,7 +8,6 @@ extern Scene scene;
 using namespace std;
  
 PickingList::PickingList(){
-	 
 }
 
 PickingList::~PickingList()

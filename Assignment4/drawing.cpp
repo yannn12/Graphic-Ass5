@@ -2,7 +2,7 @@
 
 
 #include "Scene.h"
-
+#include "MatrixHandler.h"
 #include "PickingList.h"
 #include "PickMode.h"
 
@@ -12,7 +12,7 @@
 
 
 extern Scene scene;
-
+extern PickMode pickState;
 
 
 
@@ -86,6 +86,7 @@ void drawObj(GLenum mode){
 					glNormal3f(scene.normals[n].x, scene.normals[n].y, scene.normals[n].z);
 					glVertex3f(scene.vertices[v].x, scene.vertices[v].y, scene.vertices[v].z);
 				}
+			 
 				glEnd();
 
 				
