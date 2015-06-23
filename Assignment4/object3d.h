@@ -4,17 +4,20 @@
 #include <vector>
 using namespace std;
 
-
+#include <glm/glm.hpp>
 
 typedef struct Face{
 	vector<int>  *vertice;
 	vector<int>  *normal;
 };
 
-typedef struct Group{
-
+class Group{
+public:
 	int name;
+	glm::mat4  matrix;
 	vector<Face> *faces;
+	Group();
+
 };
 
 typedef struct Point{

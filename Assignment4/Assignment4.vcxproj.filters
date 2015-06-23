@@ -60,7 +60,11 @@
     <ClInclude Include="drawing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="PickingList.h">
+=======
+    <ClInclude Include="object3d.h">
+>>>>>>> d029df5ae27704c7a4897a381c3b78c5274061ef
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,7 +105,11 @@
     <ClCompile Include="drawing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="PickingList.cpp">
+=======
+    <ClCompile Include="object3d.cpp">
+>>>>>>> d029df5ae27704c7a4897a381c3b78c5274061ef
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

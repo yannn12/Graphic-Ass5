@@ -7,3 +7,4 @@
  void rotateCamera();
  void rotateScene();
  void moveScene();
+ void moveSelectedObjects();

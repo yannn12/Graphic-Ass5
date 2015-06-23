@@ -31,6 +31,8 @@ public:
 	 vector<Vector3f> normals;
 	 vector<object3D*> objects;
 
+	 vector<Group*> selectedObjs;
+
 	 int Buttom;
 
 
@@ -43,6 +45,9 @@ public:
 	 Vector3f SceneRotDelta;
 	 Vector3f CameraRotate;
 	 Vector3f CameraRotDelta;
+
+	 Vector3f SelectObjLocDelta;
+	 Vector3f SelectObjRotDelta;
 
 	 float fieldOfViewAngle;
 	 bool  fieldofViewChaned;

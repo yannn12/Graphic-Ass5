@@ -4,13 +4,16 @@
  
 #define PICK_BUFSIZE 512
 
+static int pressX=0;
+static int pressY=0;
+static int pressState = 0;
 
 void startPicking(GLuint *selectionBuf)
 {
 	glSelectBuffer(PICK_BUFSIZE, selectionBuf); //declare buffer for input in selection mode
 	glRenderMode(GL_SELECT); //change to selecting mode
 	glInitNames();			//initialize names stack
-	glPushName(-1);			//push name
+	glPushName(0);			//push name
 }
 
 
@@ -18,6 +21,7 @@ void PickMode::processHits(GLint hits, GLuint *buffer, float *zValue)
 {
 	 
 	float z1, z2;
+<<<<<<< HEAD
 	pick pick;
 
 	if (buffer[0] > 0){
@@ -37,6 +41,19 @@ void PickMode::processHits(GLint hits, GLuint *buffer, float *zValue)
 
 			/*for (int j = 3; j < 3 + buffer[i]; j++){
 				printf("buf[%d]=%d, ", j, buffer[i + j]);
+=======
+	printf("hits= %d\n",hits);
+	printf("\nbuffer\n");
+	for (int i = 0; buffer[i]>0; i += 5)
+	{
+		z1 = buffer[i + 1] / 4294967295.0;
+		z2 = buffer[i + 2] / 4294967295.0;
+
+		printf("name = %d\nname2 = %d\n",hits,buffer[i+3],buffer[i+4]);
+
+		printf("z1 = %f ,z2 = %f zValue = %f", z1, z2, zValue[0]);
+		printf("name = %f \n",  zValue[4] );
+>>>>>>> d029df5ae27704c7a4897a381c3b78c5274061ef
 
 			}
 			printf("\n");*/
@@ -63,7 +80,11 @@ void PickMode::processHits(GLint hits, GLuint *buffer, float *zValue)
 }
 
 void PickMode::mouse(int button, int state, int x, int y){
-	 
+	pressState = button;
+	pressX =x;
+	pressY = y;
+	//NEED TO SAPERATE SELECTION MODE AND MOVE MODE
+
 	GLint viewport[4];
 	//float pix[4];
 	GLuint selectionBuf[PICK_BUFSIZE];
@@ -75,7 +96,7 @@ void PickMode::mouse(int button, int state, int x, int y){
 	glGetIntegerv(GL_VIEWPORT, viewport); //reading viewport parameters
 	press = !press;
 
-
+		
 	if (press)
 	{   //use selection mode to pick
 
@@ -123,7 +144,25 @@ void PickMode::mouse(int button, int state, int x, int y){
 
 }
 void PickMode::mouseMotion(int x, int y){
-	 
+	return;
+	if(pressState == GLUT_RIGHT_BUTTON){
+		this->scene.SelectObjLocDelta.x += ((0.0+x-pressX)/W_WIDTH)*50;
+		this->scene.SelectObjLocDelta.y -= ((0.0+y-pressY)/W_HEIGHT)*50;
+		pressX = x;
+		pressY = y;
+	}
+	else if(pressState == GLUT_MIDDLE_BUTTON){
+		this->scene.SelectObjLocDelta.z += ((0.0+y-pressY)/W_HEIGHT)*50;
+		pressX = x;
+		pressY = y;
+	}
+	else if(pressState ==GLUT_LEFT_BUTTON )
+	{
+		//this->scene.SceneRotDelta.x += ((0.0+x-pressX)/W_WIDTH);
+		//this->scene.SceneRotDelta.y += ((0.0+y-pressY)/W_HEIGHT);
+		//pressX = x;
+		//pressY = y;
+	}
 }
 
 
