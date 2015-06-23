@@ -141,6 +141,7 @@ void PickMode::processSpecialKeys(int key, int xx, int yy){
 PickMode::PickMode(Scene& scene) :State(scene)
 {
 	press = false;
+	pickingList = PickingList(scene);
 
 }
 
