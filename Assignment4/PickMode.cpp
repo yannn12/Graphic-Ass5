@@ -1,4 +1,5 @@
 #include "PickMode.h"
+#include "PickingList.h"
 #include "drawing.h"
  
 #define PICK_BUFSIZE 512
@@ -12,25 +13,51 @@ void startPicking(GLuint *selectionBuf)
 	glPushName(-1);			//push name
 }
 
-void processHits(GLint hits, GLuint *buffer, float *zValue)
+
+void PickMode::processHits(GLint hits, GLuint *buffer, float *zValue)
 {
 	 
 	float z1, z2;
-	printf("\nbuffer\n");
-	for (int i = 0; buffer[i]>0; i += 5)
-	{
-		z1 = buffer[i + 1] / 4294967295.0;
-		z2 = buffer[i + 2] / 4294967295.0;
+	pick pick;
 
-		printf("z1 = %f ,z2 = %f zValue = %f", z1, z2, zValue[0]);
-		printf("name = %f \n",  zValue[4] );
+	if (buffer[0] > 0){
+	/*	printf("\nhits: %d\n", hits);
+		printf("zValue: ");
+		for (int i = 0; i<4; i++){
+			printf("z[%d] :%f, ", i, zValue[i]);
+		}
+		printf("\nbuffer:\n");*/
+
+		float closet = 4294967295.0f;
+		for (int i = 0; buffer[i]>0; i += 3 + buffer[i])
+		{
+
+			//printf("# :%d,  min: %f,   max: %f,  ", buffer[i], buffer[i + 1] / 4294967295.0, buffer[i + 2] / 4294967295.0);
 
 
-		//if ((zValue[0] <= z1 + 0.0001 && zValue[0] >= z2 - 0.0001) || (zValue[0] >= z1 - 0.0001 && zValue[0] <= z2 + 0.0001))
-		//{	//try to locate which name is correlated with the pressed pixel according to z value 
-		//	ii = buffer[i + 3];
-		//	jj = buffer[i + 4];
-		//}
+			/*for (int j = 3; j < 3 + buffer[i]; j++){
+				printf("buf[%d]=%d, ", j, buffer[i + j]);
+
+			}
+			printf("\n");*/
+
+			if (buffer[i + 1] < closet){
+
+				pick.object = buffer[i + 3];
+				pick.group = buffer[i + 4];
+				closet = buffer[i + 1];
+
+			}
+
+
+		}
+		 
+		if (pickingList.add(pick)){
+			printf("added pick:  Object: = %d ,  Group= %d  \n", pick.object, pick.group);
+		}
+		else {
+			printf("pick already exist:  Object: = %d ,  Group= %d  \n", pick.object, pick.group);
+		}
 
 	}
 }
@@ -38,7 +65,7 @@ void processHits(GLint hits, GLuint *buffer, float *zValue)
 void PickMode::mouse(int button, int state, int x, int y){
 	 
 	GLint viewport[4];
-	float pix[4];
+	//float pix[4];
 	GLuint selectionBuf[PICK_BUFSIZE];
 
 	for (int i = 0; i<PICK_BUFSIZE; i++)
@@ -52,9 +79,9 @@ void PickMode::mouse(int button, int state, int x, int y){
 	if (press)
 	{   //use selection mode to pick
 
-		glReadPixels(x, viewport[3] - y, 1, 1, GL_RGBA, GL_FLOAT, pix);
+		//glReadPixels(x, viewport[3] - y, 1, 1, GL_RGBA, GL_FLOAT, pix);
 		glMatrixMode(GL_PROJECTION);
-		glReadPixels((GLdouble)x, (GLdouble)viewport[3] - y, 2, 2, GL_DEPTH_COMPONENT, GL_FLOAT, zValue);
+	 	glReadPixels((GLdouble)x, (GLdouble)viewport[3] - y, 2, 2, GL_DEPTH_COMPONENT, GL_FLOAT, zValue);
 
 		glPushMatrix();	//saves current projection matrix
 		glLoadIdentity();

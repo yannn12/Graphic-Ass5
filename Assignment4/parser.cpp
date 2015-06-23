@@ -150,3 +150,5 @@ void ParseFile(string fileName, Scene &scene){
 	file.close();
 
 }
+
+

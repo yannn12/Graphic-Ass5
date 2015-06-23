@@ -2,10 +2,14 @@
 
 
 #include "Scene.h"
- 
+#include "PickingList.h"
+#include "PickMode.h"
 
 
 extern Scene scene;
+
+
+
 
 void drawAxisLines(){
 
@@ -43,20 +47,23 @@ void drawObj(GLenum mode){
 	for (size_t o = 0; o < objectNum; o++){
 
 		int groupNum = scene.objects[o]->groups->size();
-
+		if (mode == GL_SELECT)
+			glLoadName(o);
 		for (size_t g = 0; g < groupNum; g++){
-		
+
 			vector<Face> *faces = scene.objects[o]->groups->at(g)->faces;
 			int facesNum = faces->size();
 			//glPushMatrix();
-
-			//glColor3f(0.3f, 0.5f, 0.13f);
+			/*float color = (float)(g+1) / (float) (groupNum+1);
+			glColor3f( 0.5, color, color );*/
+			if (mode == GL_SELECT) //pushes a name to names stack
+				glPushName(g);
 			for (int f = 0; f < facesNum; f++){
 
 				Face *face = &faces->at(f);
-				if (mode == GL_SELECT)
-					glLoadName(g);
+
 				glBegin(GL_POLYGON);
+
 				for (int i = 0; i < face->normal->size(); i++){
 					int n = face->normal->at(i) - 1;
 					int v = face->vertice->at(i) - 1;
@@ -68,8 +75,10 @@ void drawObj(GLenum mode){
 					glVertex3f(scene.vertices[v].x, scene.vertices[v].y, scene.vertices[v].z);
 				}
 				glEnd();
-			}
 
+			}
+			if (mode == GL_SELECT)
+				glPopName();
 
 		}
 
