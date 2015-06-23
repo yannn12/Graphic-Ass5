@@ -123,7 +123,7 @@ void ParseFile(string fileName, Scene &scene){
 				scene.objects.push_back(currentObject);
 			}
 
-			currentGroup = (Group*)malloc(sizeof (Group));
+			currentGroup = new Group();
 			currentGroup->name = (params.size() > 1) ? stoi(params[1]) : -1;
 
 			currentObject->groups->push_back(currentGroup);
