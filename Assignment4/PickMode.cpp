@@ -2,8 +2,16 @@
 #include "PickMode.h"
 #include "PickingList.h"
 #include "drawing.h"
+#include "RotationPickMode.h"
+#include "ScalePickMode.h"
+#include "TranslationPickMode.h"
 
 #define PICK_BUFSIZE 512
+
+extern State * ScaneState;
+extern RotationPickMode RotationPickState;
+extern TranslationPickMode TranslationPickState;
+extern ScalePickMode ScalePickState;
 
 
 void startPicking(GLuint *selectionBuf)
@@ -22,35 +30,16 @@ void PickMode::processHits(GLint hits, GLuint *buffer, float *zValue)
 	pick pick;
 
 	if (buffer[0] > 0){
-		/*	printf("\nhits: %d\n", hits);
-		printf("zValue: ");
-		for (int i = 0; i<4; i++){
-		printf("z[%d] :%f, ", i, zValue[i]);
-		}
-		printf("\nbuffer:\n");*/
-
+	 
 		float closet = 4294967295.0f;
 		for (int i = 0; buffer[i]>0; i += 3 + buffer[i])
 		{
-
-			//printf("# :%d,  min: %f,   max: %f,  ", buffer[i], buffer[i + 1] / 4294967295.0, buffer[i + 2] / 4294967295.0);
-
-
-			/*for (int j = 3; j < 3 + buffer[i]; j++){
-			printf("buf[%d]=%d, ", j, buffer[i + j]);
-
-			}
-			printf("\n");*/
-
 			if (buffer[i + 1] < closet){
 
 				pick.object = buffer[i + 3];
 				pick.group = buffer[i + 4];
 				closet = buffer[i + 1];
-
 			}
-
-
 		}
 
 		if (pickingList.toggle(pick)){
@@ -77,7 +66,8 @@ void PickMode::mouse(int button, int state, int x, int y){
 	press = !press;
 
 
-	if (press)
+	if (press && button == GLUT_RIGHT_BUTTON)
+
 	{   //use selection mode to pick
 
 		//glReadPixels(x, viewport[3] - y, 1, 1, GL_RGBA, GL_FLOAT, pix);
@@ -106,20 +96,25 @@ void PickMode::mouse(int button, int state, int x, int y){
 		glMatrixMode(GL_MODELVIEW);
 		processHits(hits, selectionBuf, zValue); //check hits
 
-		//  printf("depth %f hits: %d\n\n",pixels[(viewport[3]-y)*512+x], hits);  
-		/*	if (zValue[0]<1.0)
-		{
-		isPick = true;
-		xx = x;
-		yy = y;
-		if (button == GLUT_RIGHT_BUTTON)
-		zMove = true;
-		else zMove = false;
-		}
+	 
+	}
+	if (press && button == GLUT_LEFT_BUTTON){
+		printf("Done picking. ");
+		switch (mode){
 
+		case ROTATE:
+			printf("Entering rotate mode.\n");
+			ScaneState = &RotationPickState;
+			break;
+		case SCALE:
+			printf("Entering scale mode.\n");
+			ScaneState = &ScalePickState;
+			break;
+		case TRANSLATE:
+			printf("Entering translate mode.\n");
+			ScaneState = &TranslationPickState;
+			break;
 		}
-		else isPick = false;*/
-
 	}
 
 }
@@ -148,4 +143,9 @@ PickMode::PickMode(Scene& scene) :State(scene)
 
 PickMode::~PickMode(void)
 {
+}
+
+
+void PickMode::setMode(Mode mode){
+	this->mode = mode;
 }

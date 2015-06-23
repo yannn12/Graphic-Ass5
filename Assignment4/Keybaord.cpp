@@ -56,15 +56,20 @@ void processNormalKeys(unsigned char key, int x, int y)
 		ScaneState = &GlobalState;
 		printf("global mode.\n");
 		break;
-	case 'p':
+	case 't':
+		pickState.setMode(TRANSLATE);
 		printf("picking mode.\n");
 		ScaneState = &pickState;
 		break;
-	case 't':
-		break;
 	case 'r':
+		pickState.setMode(ROTATE);
+		printf("picking mode.\n");
+		ScaneState = &pickState;
 		break;
 	case 's':
+		pickState.setMode(SCALE);
+		printf("picking mode.\n");
+		ScaneState = &pickState;
 		break;
 	case 8: // backSpace
 		resetAllMatrices();
