@@ -53,11 +53,11 @@ void PickMode::processHits(GLint hits, GLuint *buffer, float *zValue)
 
 		}
 
-		if (pickingList.add(pick)){
+		if (pickingList.toggle(pick)){
 			printf("added pick:  Object: = %d ,  Group= %d  \n", pick.object, pick.group);
 		}
 		else {
-			printf("pick already exist:  Object: = %d ,  Group= %d  \n", pick.object, pick.group);
+			printf("remove pick: Object: = %d ,  Group= %d  \n", pick.object, pick.group);
 		}
 
 	}

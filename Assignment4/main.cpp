@@ -125,7 +125,7 @@ void mydisplay()
 	 
 
 
-
+	drawAxisLines();
 	glPushMatrix();
 	setScale();
 	glEnable(GL_LIGHTING);
@@ -136,8 +136,8 @@ void mydisplay()
 
 	
 	
-	drawAxisLines();
-
+	
+	
 	glutSwapBuffers();
 	
 
