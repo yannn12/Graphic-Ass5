@@ -114,6 +114,7 @@ void mydisplay()
 	moveCamera();
 	rotateScene();
 	rotateCamera();
+	moveSelectedObjects();
 	 
 
 

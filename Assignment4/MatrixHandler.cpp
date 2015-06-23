@@ -135,3 +135,23 @@ rotate the scene
 		scene.SceneDelta = zeroVec;
 	}
 }
+
+
+ void moveSelectedObjects(){
+
+	if (scene.SelectObjLocDelta.x != 0 || scene.SelectObjLocDelta.y != 0 || scene.SelectObjLocDelta.z != 0){
+		GLfloat * martix= &(scene.objects[0]->groups->at(4)->matrix[0][0]);
+		glm::mat4 curMetrix;
+		glPushMatrix();
+		glLoadIdentity();
+		glMultMatrixf(martix);
+		
+		glTranslatef(scene.SelectObjLocDelta.x,
+			scene.SelectObjLocDelta.y,
+			scene.SelectObjLocDelta.z);
+
+		glGetFloatv(GL_MODELVIEW_MATRIX, martix);
+		glPopMatrix();
+		scene.SelectObjLocDelta = zeroVec;
+	}
+}

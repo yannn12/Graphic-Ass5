@@ -44,6 +44,9 @@ public:
 	 Vector3f CameraRotate;
 	 Vector3f CameraRotDelta;
 
+	 Vector3f SelectObjLocDelta;
+	 Vector3f SelectObjRotDelta;
+
 	 float fieldOfViewAngle;
 	 bool  fieldofViewChaned;
 
