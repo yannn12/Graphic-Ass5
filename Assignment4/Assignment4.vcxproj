@@ -71,11 +71,10 @@
     <ClInclude Include="CameraMode.h" />
     <ClInclude Include="drawing.h" />
     <ClInclude Include="GlobalMode.h" />
-<<<<<<< HEAD
+
     <ClInclude Include="PickingList.h" />
-=======
+
     <ClInclude Include="object3d.h" />
->>>>>>> d029df5ae27704c7a4897a381c3b78c5274061ef
     <ClInclude Include="PickMode.h" />
     <ClInclude Include="Keybaord.h" />
     <ClInclude Include="MatrixHandler.h" />
