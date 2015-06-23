@@ -64,6 +64,8 @@ void PickMode::mouse(int button, int state, int x, int y){
 		gluPickMatrix((GLdouble)x, (GLdouble)viewport[3] - y, 1, 1, viewport); //change matrices so only the area of the picking pixel can be seen.
 	 
 		gluPerspective(scene.fieldOfViewAngle, 1, 2, 200);//return to perspective state 
+		glTranslatef(0, 0, -100);
+
 		glMatrixMode(GL_MODELVIEW);
 		drawObj(GL_SELECT); //draws board on background
 
