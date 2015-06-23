@@ -78,8 +78,11 @@
     <ClInclude Include="MatrixHandler.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="parser.h" />
+    <ClInclude Include="RotationPickMode.h" />
+    <ClInclude Include="ScalePickMode.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="TranslationPickMode.h" />
     <ClInclude Include="Vector3f.h" />
   </ItemGroup>
   <ItemGroup>
@@ -93,9 +96,12 @@
     <ClCompile Include="object3d.cpp" />
     <ClCompile Include="parser.cpp" />
     <ClCompile Include="PickingList.cpp" />
+    <ClCompile Include="RotationPickMode.cpp" />
+    <ClCompile Include="ScalePickMode.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="PickMode.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="TranslationPickMode.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

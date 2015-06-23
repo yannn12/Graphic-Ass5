@@ -14,6 +14,9 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="PickMode.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="TranslationPickMode.cpp" />
+    <ClCompile Include="RotationPickMode.cpp" />
+    <ClCompile Include="ScalePickMode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraMode.h" />
@@ -29,5 +32,8 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Vector3f.h" />
+    <ClInclude Include="TranslationPickMode.h" />
+    <ClInclude Include="RotationPickMode.h" />
+    <ClInclude Include="ScalePickMode.h" />
   </ItemGroup>
 </Project>
