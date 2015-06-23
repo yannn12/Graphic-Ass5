@@ -4,11 +4,17 @@
 #include "CameraMode.h"
 #include "PickMode.h"
 #include "glut.h"
+#include "RotationPickMode.h"
+#include "ScalePickMode.h"
+#include "TranslationPickMode.h"
 
 extern State * ScaneState;
 extern Scene scene;
 extern GlobalMode GlobalState;
 extern CameraMode CameraState;
+extern RotationPickMode RotationPickState;
+extern TranslationPickMode TranslationPickState;
+extern ScalePickMode ScalePickState;
 extern PickMode pickState;
 
 

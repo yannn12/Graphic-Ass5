@@ -28,7 +28,9 @@ Scene scene;
 GlobalMode GlobalState(scene);
 CameraMode CameraState(scene);
 PickMode pickState(scene);
-//RotationPickMode RotationPickState(scene);
+RotationPickMode RotationPickState(scene);
+TranslationPickMode TranslationPickState(scene);
+ScalePickMode ScalePickState(scene);
 
 State * ScaneState = &CameraState;
 
