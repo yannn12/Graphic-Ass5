@@ -1,116 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\States">
-      <UniqueIdentifier>{58832954-d5bf-4ffd-87f5-7491004e0716}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\States">
-      <UniqueIdentifier>{09a00a69-61e1-4e37-8ced-8af33f094232}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\I/O">
-      <UniqueIdentifier>{3dad7a6c-8952-402f-ab15-dd3a614a92c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\I/O">
-      <UniqueIdentifier>{829df569-6a70-433d-b698-b15dfe17a7dc}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="CameraMode.cpp" />
+    <ClCompile Include="drawing.cpp" />
+    <ClCompile Include="GlobalMode.cpp" />
+    <ClCompile Include="Keybaord.cpp" />
+    <ClCompile Include="MatrixHandler.cpp" />
+    <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="object3d.cpp" />
+    <ClCompile Include="parser.cpp" />
+    <ClCompile Include="PickingList.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="PickMode.cpp" />
+    <ClCompile Include="State.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Vector3f.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalMode.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraMode.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="parser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mouse.h">
-      <Filter>Header Files\I/O</Filter>
-    </ClInclude>
-    <ClInclude Include="Keybaord.h">
-      <Filter>Header Files\I/O</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PickMode.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="drawing.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="PickingList.h">
-=======
-    <ClInclude Include="object3d.h">
->>>>>>> d029df5ae27704c7a4897a381c3b78c5274061ef
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalMode.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraMode.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Keybaord.cpp">
-      <Filter>Source Files\I/O</Filter>
-    </ClCompile>
-    <ClCompile Include="Mouse.cpp">
-      <Filter>Source Files\I/O</Filter>
-    </ClCompile>
-    <ClCompile Include="MatrixHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="m2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PickMode.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="drawing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="PickingList.cpp">
-=======
-    <ClCompile Include="object3d.cpp">
->>>>>>> d029df5ae27704c7a4897a381c3b78c5274061ef
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="CameraMode.h" />
+    <ClInclude Include="drawing.h" />
+    <ClInclude Include="GlobalMode.h" />
+    <ClInclude Include="PickingList.h" />
+    <ClInclude Include="object3d.h" />
+    <ClInclude Include="PickMode.h" />
+    <ClInclude Include="Keybaord.h" />
+    <ClInclude Include="MatrixHandler.h" />
+    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="parser.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="Vector3f.h" />
   </ItemGroup>
 </Project>
