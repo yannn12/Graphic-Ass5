@@ -15,6 +15,9 @@
 
 #include "drawing.h"
 #include "PickMode.h"
+#include "RotationPickMode.h"
+#include "ScalePickMode.h"
+#include "TranslationPickMode.h"
 
 using namespace std;
 
@@ -25,6 +28,8 @@ Scene scene;
 GlobalMode GlobalState(scene);
 CameraMode CameraState(scene);
 PickMode pickState(scene);
+//RotationPickMode RotationPickState(scene);
+
 State * ScaneState = &CameraState;
 
 

@@ -54,6 +54,12 @@ void processNormalKeys(unsigned char key, int x, int y)
 		printf("picking mode.\n");
 		ScaneState = &pickState;
 		break;
+	case 't':
+		break;
+	case 'r':
+		break;
+	case 's':
+		break;
 	case 8: // backSpace
 		resetAllMatrices();
 		break;
