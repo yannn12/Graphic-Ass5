@@ -160,3 +160,27 @@ rotate the scene
 		scene.SelectObjLocDelta = zeroVec;
 	}
 }
+
+
+ Vector3f comCalc(vector<Group*> groups){
+	 Vector3f result(0,0,0);
+	 int verCount=0;
+	 for(int i=0;i<groups.size();i++){
+		 for(int j=0;j<groups[i]->faces->size();j++){
+			 for(int k=0;k<groups[i]->faces->at(j).vertice->size();k++){
+				 verCount++;
+				 int verInd = groups[i]->faces->at(j).vertice->at(k);
+				 Vector3f vertix = scene.vertices[verInd];
+				 result.x+= vertix.x;
+				 result.y+= vertix.y;
+				 result.z+= vertix.z;
+			 }
+		 }
+	 }
+	 result.x/= verCount;
+	 result.y/= verCount;
+	 result.z/= verCount;
+
+	 return result;
+
+ }
