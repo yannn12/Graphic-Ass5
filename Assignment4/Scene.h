@@ -31,6 +31,8 @@ public:
 	 vector<Vector3f> normals;
 	 vector<object3D*> objects;
 
+	 vector<Group*> selectedObjs;
+
 	 int Buttom;
 
 

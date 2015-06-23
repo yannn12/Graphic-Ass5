@@ -140,18 +140,23 @@ rotate the scene
  void moveSelectedObjects(){
 
 	if (scene.SelectObjLocDelta.x != 0 || scene.SelectObjLocDelta.y != 0 || scene.SelectObjLocDelta.z != 0){
-		GLfloat * martix= &(scene.objects[0]->groups->at(4)->matrix[0][0]);
-		glm::mat4 curMetrix;
-		glPushMatrix();
-		glLoadIdentity();
-		glMultMatrixf(martix);
+		scene.selectedObjs.clear();
+		scene.selectedObjs.push_back(scene.objects[0]->groups->at(4));
+		scene.selectedObjs.push_back(scene.objects[0]->groups->at(10));
+		for(int i=0;i<scene.selectedObjs.size();i++){
+			GLfloat * martix= &(scene.selectedObjs[i]->matrix[0][0]);
+			glm::mat4 curMetrix;
+			glPushMatrix();
+			glLoadIdentity();
+			glMultMatrixf(martix);
 		
-		glTranslatef(scene.SelectObjLocDelta.x,
-			scene.SelectObjLocDelta.y,
-			scene.SelectObjLocDelta.z);
+			glTranslatef(scene.SelectObjLocDelta.x,
+				scene.SelectObjLocDelta.y,
+				scene.SelectObjLocDelta.z);
 
-		glGetFloatv(GL_MODELVIEW_MATRIX, martix);
+			glGetFloatv(GL_MODELVIEW_MATRIX, martix);
 		glPopMatrix();
+		}
 		scene.SelectObjLocDelta = zeroVec;
 	}
 }
