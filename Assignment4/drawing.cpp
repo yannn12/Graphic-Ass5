@@ -147,9 +147,23 @@ void drawCom(){
 		for (std::vector<Group *>::iterator it = SelectedGroups->begin(); it != SelectedGroups->end() ; ++it){
 			glPushMatrix();
 
-			Group * g = (*it);		 
-		 
-			glTranslatef(g->centerOfMass.x, g->centerOfMass.y, g->centerOfMass.z);
+			Group * grp = (*it);		 
+			
+
+
+			glTranslatef(grp->centerOfMass.x, grp->centerOfMass.y, grp->centerOfMass.z);
+
+			if (!grp->scale != 1 && grp->scale > 0){
+				glScalef(grp->scale, grp->scale, grp->scale);
+			}
+			if (!grp->rotation.isZero()){
+				glRotatef((grp->rotation.x) * 180, 0, 1, 0);
+				glRotatef((grp->rotation.y) * 180, 1, 0, 0);
+			}
+			if (!grp->translation.isZero()){
+				glTranslatef(grp->translation.x, grp->translation.y, grp->translation.z);
+			}
+
 			glColor3f(1.0f, 0.0f, 0.0f);
 			glutSolidSphere(0.3, 5, 5);
 		

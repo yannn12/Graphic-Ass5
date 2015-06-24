@@ -114,9 +114,12 @@ void mydisplay()
 
  
 	//glRotatef(0.1, 0, 1,0 ); //rotate scene
-
+	
+	 
+	drawAxisLines();
+	 
 	setProjectionMatrix();
-
+	
 	moveScene();
 	moveCamera();
 	rotateScene();
@@ -126,7 +129,7 @@ void mydisplay()
 	 
 
 
-	drawAxisLines();
+	
 	glPushMatrix();
 	setScale();
 	glEnable(GL_LIGHTING);

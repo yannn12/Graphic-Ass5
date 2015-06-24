@@ -68,30 +68,41 @@ moves camera
 }
 
 
+ void rotateCameraByVector(Vector3f vec){
+
+	glm::vec4 sceneOrgLoc(0.0, 0.0, -100.0, 1.0);
+	glm::vec4 up(0.0, 1.0, 0.0, 0.0);
+	glm::vec4 right(1.0, 0.0, 0.0, 0.0);
+	glm::mat4 curMetrix;
+	glGetFloatv(GL_MODELVIEW_MATRIX, &curMetrix[0][0]);
+	glm::vec4 sceneFixedLoc = sceneOrgLoc*curMetrix;
+	glm::vec4 upFixed = up*curMetrix;
+	glm::vec4 rightFixed = right*curMetrix;
+	glTranslatef(sceneFixedLoc[0] * -1,
+		sceneFixedLoc[1] * -1,
+		sceneFixedLoc[2] * -1);
+
+	glRotatef((vec.x) * 180, upFixed[0], upFixed[1], upFixed[2]);
+	glRotatef((vec.y) * 180, rightFixed[0], rightFixed[1], rightFixed[2]);
+
+
+	glTranslatef(sceneFixedLoc[0],
+		sceneFixedLoc[1],
+		sceneFixedLoc[2]);
+
+	 
+
+ }
+
 /*
 rotates the camera
 */
  void rotateCamera(){
 	if (scene.CameraRotDelta.x != 0 || scene.CameraRotDelta.y != 0){
-		glm::vec4 sceneOrgLoc(0.0, 0.0, -100.0, 1.0);
-		glm::vec4 up(0.0, 1.0, 0.0, 0.0);
-		glm::vec4 right(1.0, 0.0, 0.0, 0.0);
-		glm::mat4 curMetrix;
-		glGetFloatv(GL_MODELVIEW_MATRIX, &curMetrix[0][0]);
-		glm::vec4 sceneFixedLoc = sceneOrgLoc*curMetrix;
-		glm::vec4 upFixed = up*curMetrix;
-		glm::vec4 rightFixed = right*curMetrix;
-		glTranslatef(sceneFixedLoc[0] * -1,
-			sceneFixedLoc[1] * -1,
-			sceneFixedLoc[2] * -1);
-
-		glRotatef((scene.CameraRotDelta.x) * 180, upFixed[0], upFixed[1], upFixed[2]);
-		glRotatef((scene.CameraRotDelta.y) * 180, rightFixed[0], rightFixed[1], rightFixed[2]);
-
-
-		glTranslatef(sceneFixedLoc[0],
-			sceneFixedLoc[1],
-			sceneFixedLoc[2]);
+		Vector3f xVec(scene.CameraRotDelta.x, 0, 0);
+		Vector3f yVec(0, scene.CameraRotDelta.y, 0);
+		rotateCameraByVector(xVec);
+		rotateCameraByVector(yVec);
 		scene.CameraRotDelta.x = 0;
 		scene.CameraRotDelta.y = 0;
 	}

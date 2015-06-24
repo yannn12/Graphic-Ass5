@@ -55,6 +55,8 @@ public:
 	 float scaleFactor;
 	 bool scaleFactorChanged;
 
+	 void reset();
+
 	Scene(void);
 	~Scene(void);
 };

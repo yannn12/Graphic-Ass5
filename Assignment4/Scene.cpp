@@ -19,3 +19,21 @@ Scene::Scene(void) :SceneLocation(0, 0, 0),
 Scene::~Scene(void)
 {
 }
+
+
+void Scene::reset( )
+{
+	SceneLocation.makeZero();
+	SceneDelta.makeZero();
+	CameraLocation.makeZero();
+	CameraLocDelta.makeZero();
+	SceneRotate.makeZero();
+	SceneRotDelta.makeZero();
+	CameraRotate.makeZero();
+	CameraRotDelta.makeZero();
+	fieldOfViewAngle=(0);
+	fieldofViewChaned=(false);
+	scaleFactor=(1);
+	scaleFactorChanged=(false);
+
+}

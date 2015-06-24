@@ -19,7 +19,20 @@ extern PickMode pickState;
 
 
 void resetAllMatrices(){
-	scene.CameraLocation = Vector3f(0, 0, 0);
+	 
+ 	glMatrixMode(GL_PROJECTION); /* switch matrix mode */
+	glLoadIdentity();		//load Identity matrix
+
+	//defines view mode
+	scene.fieldOfViewAngle = 60;
+	gluPerspective(scene.fieldOfViewAngle, 1, 2, 200);
+	glTranslatef(0, 0, -100);
+
+	 /* return to modelview mode */
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	 
 	glMatrixMode(GL_PROJECTION); /* switch matrix mode */
 	glLoadIdentity();		//load Identity matrix
 
@@ -31,7 +44,26 @@ void resetAllMatrices(){
 	/* return to modelview mode */
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	scene.scaleFactor = 1;
+	 
+	int objectNum = scene.objects.size();
+
+	for (int o = 0; o < objectNum; o++){
+
+		object3D *obj = scene.objects.at(o);
+		int groupNum = obj->groups->size();
+
+		for (int g = 0; g < groupNum; g++){
+
+			Group *grp = obj->groups->at(g);
+			grp->rotation.makeZero();
+			grp->scale = 1.0f;
+			grp->translation.makeZero();
+
+
+		}
+	}
+
+	scene.reset();
 }
 
 //void switchState(){
