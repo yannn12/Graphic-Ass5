@@ -1,10 +1,15 @@
 #include "RotationPickMode.h"
+#include "PickMode.h"
+#include "PickingList.h"
+
 
 
 static int pressX=0;
 static int pressY=0;
 static int pressState = 0;
 
+extern PickMode pickState;
+static PickingList *pickinglist = &pickState.pickingList;
 
 RotationPickMode::RotationPickMode(Scene& scene) :State(scene)
 {
@@ -36,8 +41,13 @@ void RotationPickMode::mouseMotion(int x, int y){
 	}
 	else if(pressState ==GLUT_LEFT_BUTTON )
 	{
-		this->scene.SelectObjRotDelta.x += ((0.0+x-pressX)/W_WIDTH);
-		this->scene.SelectObjRotDelta.y += ((0.0+y-pressY)/W_HEIGHT);
+		 
+		vector<Group *> * selectedGroups = pickinglist->getSelectedGroups();
+		for (std::vector<Group *>::iterator grp = selectedGroups->begin(); grp != selectedGroups->end(); ++grp){
+			(*grp)->rotation.x += ((0.0 + x - pressX) / W_WIDTH);
+			(*grp)->rotation.y += ((0.0 + y - pressY) / W_HEIGHT);
+		}
+		
 		pressX = x;
 		pressY = y;
 	}

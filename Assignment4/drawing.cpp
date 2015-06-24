@@ -54,8 +54,10 @@ void drawObj(GLenum mode){
 	for (size_t o = 0; o < objectNum; o++){
 
 		int groupNum = scene.objects[o]->groups->size();
+		
 		if (mode == GL_SELECT)
 			glLoadName(o);
+		
 		for (size_t g = 0; g < groupNum; g++){
 
 			glPushMatrix();
@@ -66,12 +68,23 @@ void drawObj(GLenum mode){
 
 			GLfloat orgMat[4*4];
 
-			GLfloat * martix = &(grp->matrix[0][0]);
+		/*	GLfloat * martix = &(grp->matrix[0][0]);
 
 			
 			glGetFloatv(GL_MODELVIEW_MATRIX, orgMat);
 			glLoadMatrixf(martix);
-			glMultMatrixf(orgMat);
+			glMultMatrixf(orgMat);*/
+			if (!grp->scale!= 1 && grp->scale > 0){
+				glScalef(grp->scale, grp->scale, grp->scale);
+			}
+			if (!grp->rotation.isZero()){
+				glRotatef((grp->rotation.x) * 180, 0, 1, 0);
+				glRotatef((grp->rotation.y) * 180, 1, 0, 0);
+			}
+			if (!grp->translation.isZero()){
+				glTranslatef(grp->translation.x, grp->translation.y, grp->translation.z);
+			}
+			
 			int facesNum = faces->size();
 			//glPushMatrix();
 
@@ -87,7 +100,7 @@ void drawObj(GLenum mode){
 				for (int i = 0; i < face->normal->size(); i++){
 					int n = face->normal->at(i) - 1;
 					int v = face->vertice->at(i) - 1;
-					float f = float(i) / facesNum;
+					//float f = float(i) / facesNum;
 					//glColor3f(f, f*2, f);
 					Vector3f nn = scene.normals[n];
 					Vector3f vv = scene.vertices[v];

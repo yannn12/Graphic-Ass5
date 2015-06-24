@@ -14,10 +14,10 @@ void CameraMode::mouse(int button, int state, int x, int y){
 		
 	}
 	else{
-		this->scene.CameraLocation+= this->scene.CameraLocDelta;
+	/*	this->scene.CameraLocation+= this->scene.CameraLocDelta;
 		this->scene.CameraLocDelta = zeroVec;
 		this->scene.CameraRotate += this->scene.CameraRotDelta;
-		this->scene.CameraRotDelta = zeroVec;
+		this->scene.CameraRotDelta = zeroVec;*/
 	}
 
 

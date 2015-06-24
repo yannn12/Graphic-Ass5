@@ -13,7 +13,7 @@ using namespace std;
 
 
 
-void calcCenterOfmass(Scene &scene);
+void initGroupData(Scene &scene);
 
 
 /*
@@ -149,13 +149,13 @@ void ParseFile(string fileName, Scene &scene){
 
 	}
 
-	calcCenterOfmass(scene);
+	initGroupData(scene);
 	file.close();
 
 }
 
 
-void calcCenterOfmass(Scene &scene){
+void initGroupData(Scene &scene){
 
 	int objectNum = scene.objects.size();
 	
@@ -168,6 +168,11 @@ void calcCenterOfmass(Scene &scene){
 
 			Group *grp = obj->groups->at(g);
 			grp->centerOfMass = comCalc(grp);
+			grp->rotation.makeZero();
+			grp->scale =1.0f;
+			grp->translation.makeZero();
+
+
 		}
 	}
 	 

@@ -19,7 +19,9 @@ public:
 	glm::mat4  matrix;
 	vector<Face> *faces;
 	Vector3f centerOfMass;
-	Group();
+	Vector3f rotation, translation;
+	float scale;
+//	Group();
 
 };
 

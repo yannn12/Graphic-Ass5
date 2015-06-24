@@ -19,7 +19,7 @@ extern PickMode pickState;
 
 
 void resetAllMatrices(){
-
+	scene.CameraLocation = Vector3f(0, 0, 0);
 	glMatrixMode(GL_PROJECTION); /* switch matrix mode */
 	glLoadIdentity();		//load Identity matrix
 
@@ -73,6 +73,13 @@ void processNormalKeys(unsigned char key, int x, int y)
 		break;
 	case 8: // backSpace
 		resetAllMatrices();
+		break;
+
+	case 'z':
+		printf("camera  location: (%f, %f, %f)\n", scene.CameraLocation.x, scene.CameraLocation.y, scene.CameraLocation.z);
+		printf("scene   location: (%f, %f, %f)\n", scene.SceneLocation.x, scene.SceneLocation.y, scene.SceneLocation.z);
+		printf("camera Rotattion: (%f, %f, %f)\n", scene.CameraRotate.x, scene.CameraRotate.y, scene.CameraRotate.z);
+		printf("scene  Rotattion: (%f, %f, %f)\n\n", scene.SceneRotate.x, scene.SceneRotate.y, scene.SceneRotate.z);
 		break;
 	default: 
 		ScaneState->processNormalKeys(key, x, y);

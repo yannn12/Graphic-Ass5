@@ -37,7 +37,6 @@ set scale to the current matrix
 */
  void setScale(){
 
-
 	glScalef(scene.scaleFactor, scene.scaleFactor, scene.scaleFactor);
 
 }
@@ -49,6 +48,7 @@ moves camera
 */
  void moveCamera(){
 	if (scene.CameraLocDelta.x != 0 || scene.CameraLocDelta.y != 0 || scene.CameraLocDelta.z != 0){
+
 		glm::vec4 forward(0.0, 0.0, -1.0, 0.0);
 		glm::vec4 up(0.0, 1.0, 0.0, 0.0);
 		glm::vec4 right(1.0, 0.0, 0.0, 0.0);
@@ -61,6 +61,7 @@ moves camera
 		glTranslatef(finalVec[0],
 			finalVec[1],
 			finalVec[2]);
+		scene.CameraLocation += scene.CameraLocDelta;
 		scene.CameraLocDelta = zeroVec;
 	}
 
@@ -108,14 +109,18 @@ rotate the scene
 		glTranslatef(sceneFixedLoc[0] * -1,
 			sceneFixedLoc[1] * -1,
 			sceneFixedLoc[2] * -1);
-
+		//Vector3f totalTranslation = scene.CameraLocation + scene.SceneLocation;
+		
+		
+		//glTranslatef(-totalTranslation.x, -totalTranslation.y,-totalTranslation.z);
 		glRotatef((scene.SceneRotDelta.x) * 180, 0, 1, 0);
 		glRotatef((scene.SceneRotDelta.y) * 180, 1, 0, 0);
-
+		//glTranslatef(totalTranslation.x, totalTranslation.y, totalTranslation.z);
 
 		glTranslatef(sceneFixedLoc[0],
 			sceneFixedLoc[1],
 			sceneFixedLoc[2]);
+		scene.SceneRotate += scene.SceneRotDelta;
 		scene.SceneRotDelta.x = 0;
 		scene.SceneRotDelta.y = 0;
 	}
@@ -132,7 +137,9 @@ rotate the scene
 		glTranslatef(scene.SceneDelta.x,
 			scene.SceneDelta.y,
 			scene.SceneDelta.z);
+		scene.SceneLocation += scene.SceneDelta;
 		scene.SceneDelta = zeroVec;
+		 
 	}
 }
 
