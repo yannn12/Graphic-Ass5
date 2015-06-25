@@ -5,6 +5,7 @@
 #include "RotationPickMode.h"
 #include "ScalePickMode.h"
 #include "TranslationPickMode.h"
+#include "MatrixHandler.h"
 
 
 #define PICK_BUFSIZE 512
@@ -27,7 +28,7 @@ void startPicking(GLuint *selectionBuf)
 void PickMode::processHits(GLint hits, GLuint *buffer, float *zValue)
 {
 
-	float z1, z2;
+ 
 	pick pick;
 
 	if (buffer[0] > 0){
@@ -35,6 +36,10 @@ void PickMode::processHits(GLint hits, GLuint *buffer, float *zValue)
 		float closet = 4294967295.0f;
 		for (int i = 0; buffer[i]>0; i += 3 + buffer[i])
 		{
+			 
+			//printf("z: %f, %f ,%f ,%f .\n" ,zValue[0], zValue[1], zValue[2], zValue[3]);
+			printf(" buffer[%d]: # %d , min %d , max %d, names : %d %d \n", i, buffer[i ], buffer[i + 1], buffer[i + 2], buffer[i + 3],buffer[i+4]);
+		 
 			if (buffer[i + 1] < closet){
 
 				pick.object = buffer[i + 3];
@@ -63,6 +68,7 @@ void PickMode::mouse(int button, int state, int x, int y){
 	{
 		selectionBuf[i] = 0;
 	}
+
 	glGetIntegerv(GL_VIEWPORT, viewport); //reading viewport parameters
 	press = !press;
 
@@ -71,9 +77,9 @@ void PickMode::mouse(int button, int state, int x, int y){
 
 	{   //use selection mode to pick
 
-		//glReadPixels(x, viewport[3] - y, 1, 1, GL_RGBA, GL_FLOAT, pix);
+		glReadPixels((GLdouble)x, (GLdouble)viewport[3] - y, 1 ,1, GL_DEPTH_COMPONENT, GL_FLOAT, zValue);
 		glMatrixMode(GL_PROJECTION);
-		glReadPixels((GLdouble)x, (GLdouble)viewport[3] - y, 2, 2, GL_DEPTH_COMPONENT, GL_FLOAT, zValue);
+		
 
 		glPushMatrix();	//saves current projection matrix
 		glLoadIdentity();
@@ -85,20 +91,22 @@ void PickMode::mouse(int button, int state, int x, int y){
 		//gluPerspective(scene.camera.fieldOfViewAngle, 1, 2, 200);//return to perspective state 
 		//glTranslatef(0, 0, -100);
 
-		gluPerspective(scene.camera.fieldOfViewAngle, 1, 2, 200);
+		//gluPerspective(scene.camera.fieldOfViewAngle, 1, 2, 200);
 
 
-		glRotatef(scene.camera.Rotation.x, 0, 1, 0);
-		glRotatef(scene.camera.Rotation.y, 1, 0, 0);
+		//glRotatef(scene.camera.Rotation.x, 0, 1, 0);
+		//glRotatef(scene.camera.Rotation.y, 1, 0, 0);
 
-		glTranslatef(scene.camera.Translation.x, scene.camera.Translation.y, scene.camera.Translation.z);
+		//glTranslatef(scene.camera.Translation.x, scene.camera.Translation.y, scene.camera.Translation.z);
 
+		setCamera();
+	 
 
 		/**************/
 		glMatrixMode(GL_MODELVIEW);
 		drawObj(GL_SELECT); //draws board on background
 
-
+		glFlush();
 		int hits = glRenderMode(GL_RENDER); //gets hits number 
 
 		glMatrixMode(GL_PROJECTION);
@@ -163,4 +171,11 @@ PickMode::~PickMode(void)
 
 void PickMode::setMode(Mode mode){
 	this->mode = mode;
+	pickingList.clearPick();
+}
+
+void PickMode::clearPick(){
+
+	pickingList.clearPick();
+	
 }

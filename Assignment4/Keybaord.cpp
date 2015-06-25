@@ -82,25 +82,27 @@ void processNormalKeys(unsigned char key, int x, int y)
 
 	case 'c':
 		ScaneState = &CameraState;
+		pickState.clearPick();
 		printf("camera mode.\n");
 		break;
 	case 'g':
 		ScaneState = &GlobalState;
+		pickState.clearPick();
 		printf("global mode.\n");
 		break;
 	case 't':
 		pickState.setMode(TRANSLATE);
-		printf("picking mode.\n");
+		printf("trnaslate picking mode.\n");
 		ScaneState = &pickState;
 		break;
 	case 'r':
 		pickState.setMode(ROTATE);
-		printf("picking mode.\n");
+		printf("rotate picking mode.\n");
 		ScaneState = &pickState;
 		break;
 	case 's':
 		pickState.setMode(SCALE);
-		printf("picking mode.\n");
+		printf("scale picking mode.\n");
 		ScaneState = &pickState;
 		break;
 	case 8: // backSpace
@@ -149,15 +151,15 @@ void processSpecialKeys(int key, int xx, int yy){
 		break;
 	case GLUT_KEY_UP:
 
-		scene.scaleFactor *= SCALE_FACTOR;
-		printf("scale factor: %f\n", scene.scaleFactor);
+		scene.global.scale *= SCALE_FACTOR;
+		printf("scale factor: %f\n", scene.global.scale);
 		break;
 	case GLUT_KEY_DOWN:
 
 
 
-		scene.scaleFactor /= SCALE_FACTOR;
-		printf("scale factor: %f\n", scene.scaleFactor);
+		scene.global.scale /= SCALE_FACTOR;
+		printf("scale factor: %f\n", scene.global.scale);
 		break;
 	default:
 		ScaneState->processSpecialKeys(key, xx, yy);

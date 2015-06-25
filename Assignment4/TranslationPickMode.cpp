@@ -63,9 +63,10 @@ void TranslationPickMode::mouseMotion(int x, int y){
 			glTranslatef(translationX, translationY, translationZ);
 			
 			glGetFloatv(GL_MODELVIEW_MATRIX, &(*M)[0][0]);
-			glm::vec4 com((*grp)->centerOfMass.x, (*grp)->centerOfMass.y, (*grp)->centerOfMass.z, 1);
-			com = (*M) *com;
-			(*grp)->centerOfMass = Vector3f(com.x, com.y, com.z);
+			/*glm::vec4 com((*grp)->centerOfMass.x, (*grp)->centerOfMass.y, (*grp)->centerOfMass.z, 1);
+			com = (*M) *com;*/
+			Vector3f delta(translationX, translationY, translationZ);
+			(*grp)->centerOfMass += delta;
 			glPopMatrix();
 
 		}

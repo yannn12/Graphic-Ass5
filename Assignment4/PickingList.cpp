@@ -65,3 +65,5 @@ void PickingList::clearPick(){
 	selectedGroups.clear();
 
 }
+
+ 

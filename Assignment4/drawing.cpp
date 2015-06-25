@@ -49,7 +49,7 @@ void drawObj(GLenum mode){
 	//glDisable(GL_COLOR_MATERIAL);
 
 	
-
+	glPushMatrix();
 
 	for (size_t o = 0; o < objectNum; o++){
 
@@ -102,21 +102,22 @@ void drawObj(GLenum mode){
 					glVertex3f(scene.vertices[v].x, scene.vertices[v].y, scene.vertices[v].z);
 				}
 				
-				glEnd();
-
+				glEnd(); 
+				
 			 
 				
 			}
+	
 			if(mode==GL_SELECT)
 				glPopName(); 
 	
 			unsetGroupMatrix();	
-
+		 
 		}
 
 
 	}
-
+	glPopMatrix();
 	
 
 }
@@ -132,15 +133,14 @@ void drawCom(){
 		 
 
 			Group * grp = (*it);		 
-			
-
-			
-	 
-			glTranslatef(grp->centerOfMass.x, grp->centerOfMass.y, grp->centerOfMass.z);
+			glPushMatrix();
+			glTranslatef(grp->centerOfMass.x, grp->centerOfMass.y, grp->centerOfMass.z);	
+			 
 			glColor3f(1.0f, 0.0f, 0.0f);
 			glutSolidSphere(0.3, 5, 5);
-		
-			
+			 
+			glPopMatrix();
+			 
 			
 		}
 		

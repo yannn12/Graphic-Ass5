@@ -1,11 +1,8 @@
 #include "Scene.h"
 
 
-Scene::Scene(void) :SceneLocation(0, 0, 0), 
-					SceneDelta(0, 0, 0), 
-					SceneRotate(0, 0, 0), 
-					SceneRotDelta(0, 0, 0), 
-					scaleFactor(1),	 scaleFactorChanged(false)
+Scene::Scene(void) 
+					 
 					
 {
 	camera.fieldOfViewAngle = 60;

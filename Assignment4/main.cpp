@@ -43,14 +43,9 @@ void init()
  
 	glClearColor(0, 0, 0, 1); //black background
 	glReadBuffer(GL_BACK);
-
-
- 
- 
 	
 	glEnable(GL_DEPTH_TEST);  //define in which order the scene will built
 	 
-
 	/* return to modelview mode */
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -113,9 +108,9 @@ void mydisplay()
  	glEnable(GL_LIGHTING);
 	drawObj(GL_RENDER);
 	glDisable(GL_LIGHTING);
-	 
-
 	drawCom();
+
+	
 	
 	
 	
@@ -147,7 +142,7 @@ int main(int  argc, char** argv)
 	init();
 	initLight();
 
-	ParseFile("simple.obj", scene);
+	ParseFile("scene.obj", scene);
 	glutDisplayFunc(mydisplay);
 	glutMouseFunc(mouse);
 	glutMotionFunc(mouseMotion);

@@ -19,6 +19,8 @@ public:
 
 	PickMode(Scene& scene);
 
+	void clearPick();
+
 	virtual void mouse(int button, int state, int x, int y);
 	virtual void mouseMotion(int x, int y);
 	

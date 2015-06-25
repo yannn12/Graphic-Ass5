@@ -59,24 +59,7 @@ public:
 	 Camera camera;
 	 Global global;
 
-	 Vector3f SceneLocation;
-	 Vector3f SceneDelta;
-	  
-	 
-	 
-	 Vector3f SceneRotate;
-	 Vector3f SceneRotDelta;
-	  
-
-	 
-
-	 Vector3f SelectObjLocDelta;
-	 Vector3f SelectObjRotDelta;
-
-	 
-
-	 float scaleFactor;
-	 bool scaleFactorChanged;
+ 
 
 	 void reset();
 
