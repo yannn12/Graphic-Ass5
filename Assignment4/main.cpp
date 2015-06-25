@@ -110,17 +110,12 @@ void mydisplay()
 	setGlobal();
 	drawAxisLines();
 	 
-	
  	glEnable(GL_LIGHTING);
 	drawObj(GL_RENDER);
 	glDisable(GL_LIGHTING);
+	 
 
-	
-
-	/*drawCom();*/
-	glPopMatrix();
-
-	
+	drawCom();
 	
 	
 	

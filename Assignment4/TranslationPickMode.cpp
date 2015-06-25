@@ -31,17 +31,20 @@ void TranslationPickMode::mouseMotion(int x, int y){
 	if(pressState == GLUT_RIGHT_BUTTON){
 		vector<Group *> * selectedGroups = pickinglist->getSelectedGroups();
 		for (std::vector<Group *>::iterator grp = selectedGroups->begin(); grp != selectedGroups->end(); ++grp){
-			(*grp)->translation.x += ((0.0 + x - pressX) / W_WIDTH) * 50;
-			(*grp)->translation.y += ((0.0 + y - pressY) / W_HEIGHT) * 50;
+
+			(*grp)->translation.x += (( (float)x - pressX) / W_WIDTH ) * 50;
+			(*grp)->translation.y += (( (float)y - pressY) / W_HEIGHT) * 50;
 		}
 	 
 		pressX = x;
 		pressY = y;
 	}
 	else if(pressState == GLUT_MIDDLE_BUTTON){
+
 		vector<Group *> * selectedGroups = pickinglist->getSelectedGroups();
 		for (std::vector<Group *>::iterator grp = selectedGroups->begin(); grp != selectedGroups->end(); ++grp){
-			(*grp)->translation.z += ((0.0 + y - pressY) / W_HEIGHT) * 50;
+
+			(*grp)->translation.z += (( (float)y - pressY) / W_HEIGHT) * 50;
 		}
 		pressX = x;
 		pressY = y;

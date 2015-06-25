@@ -59,8 +59,10 @@ void drawObj(GLenum mode){
 			glLoadName(o);
 		
 		for (size_t g = 0; g < groupNum; g++){
-
-			glPushMatrix();
+			Group * grp = scene.objects[o]->groups->at(g);
+			vector<Face> *faces = grp->faces;
+			setGroupMatrix(*grp);
+		/*	glPushMatrix();
 
 			Group * grp = scene.objects[o]->groups->at(g);
 			vector<Face> *faces = grp->faces;
@@ -72,7 +74,7 @@ void drawObj(GLenum mode){
 
 			glGetFloatv(GL_MODELVIEW_MATRIX, worldMat);
 			glLoadMatrixf(worldMat);
-			glMultMatrixf(groupMatrix);
+			glMultMatrixf(groupMatrix);*/
 			
 			int facesNum = faces->size();
 			//glPushMatrix();
@@ -91,6 +93,7 @@ void drawObj(GLenum mode){
 					int v = face->vertice->at(i) - 1;
 					//float f = float(i) / facesNum;
 					//glColor3f(f, f*2, f);
+
 					Vector3f nn = scene.normals[n];
 					Vector3f vv = scene.vertices[v];
 					glNormal3f(scene.normals[n].x, scene.normals[n].y, scene.normals[n].z);
@@ -98,14 +101,14 @@ void drawObj(GLenum mode){
 				}
 				
 				glEnd();
-			
-
+			 
 				
 			}
 			if(mode==GL_SELECT)
 				glPopName(); 
 
-			glPopMatrix();
+			unsetGroupMatrix();	
+
 		}
 
 
@@ -123,30 +126,19 @@ void drawCom(){
 		glClear(GL_DEPTH_BUFFER_BIT);
 		glDisable(GL_LIGHTING);
 		for (std::vector<Group *>::iterator it = SelectedGroups->begin(); it != SelectedGroups->end() ; ++it){
-			glPushMatrix();
+		 
 
 			Group * grp = (*it);		 
 			
 
 
-			glTranslatef(grp->centerOfMass.x, grp->centerOfMass.y, grp->centerOfMass.z);
-
-			if (!grp->scale != 1 && grp->scale > 0){
-				glScalef(grp->scale, grp->scale, grp->scale);
-			}
-			if (!grp->rotation.isZero()){
-				glRotatef((grp->rotation.x) * 180, 0, 1, 0);
-				glRotatef((grp->rotation.y) * 180, 1, 0, 0);
-			}
-			if (!grp->translation.isZero()){
-				glTranslatef(grp->translation.x, grp->translation.y, grp->translation.z);
-			}
+			setGroupMatrix(*grp);
 
 			glColor3f(1.0f, 0.0f, 0.0f);
 			glutSolidSphere(0.3, 5, 5);
 		
- 
-			glPopMatrix();
+			unsetGroupMatrix();
+			
 		}
 		
 		

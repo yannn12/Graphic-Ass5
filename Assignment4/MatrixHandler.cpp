@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Vector3f.h"
 #include "object3d.h"
+#include "PickingList.h"
 
 
  
@@ -59,6 +60,16 @@ void setGlobal(){
 
 }
 
+ void setGroupMatrix(Group &group){
+		
+	glPushMatrix();
+	glMultMatrixf(&(group.M[0][0]));
+}
+
+ void unsetGroupMatrix(){
+	glPopMatrix();
+}
+
 
 
 /*
@@ -86,31 +97,31 @@ moves camera
 //}
 
 
- void rotateCameraByVector(Vector3f vec){
+ //void rotateCameraByVector(Vector3f vec){
 
-	glm::vec4 sceneOrgLoc(0.0, 0.0, -100.0, 1.0);
-	glm::vec4 up(0.0, 1.0, 0.0, 0.0);
-	glm::vec4 right(1.0, 0.0, 0.0, 0.0);
-	glm::mat4 curMetrix;
-	glGetFloatv(GL_MODELVIEW_MATRIX, &curMetrix[0][0]);
-	glm::vec4 sceneFixedLoc = sceneOrgLoc*curMetrix;
-	glm::vec4 upFixed = up*curMetrix;
-	glm::vec4 rightFixed = right*curMetrix;
-	glTranslatef(sceneFixedLoc[0] * -1,
-		sceneFixedLoc[1] * -1,
-		sceneFixedLoc[2] * -1);
+	//glm::vec4 sceneOrgLoc(0.0, 0.0, -100.0, 1.0);
+	//glm::vec4 up(0.0, 1.0, 0.0, 0.0);
+	//glm::vec4 right(1.0, 0.0, 0.0, 0.0);
+	//glm::mat4 curMetrix;
+	//glGetFloatv(GL_MODELVIEW_MATRIX, &curMetrix[0][0]);
+	//glm::vec4 sceneFixedLoc = sceneOrgLoc*curMetrix;
+	//glm::vec4 upFixed = up*curMetrix;
+	//glm::vec4 rightFixed = right*curMetrix;
+	//glTranslatef(sceneFixedLoc[0] * -1,
+	//	sceneFixedLoc[1] * -1,
+	//	sceneFixedLoc[2] * -1);
 
-	glRotatef((vec.x) * 180, upFixed[0], upFixed[1], upFixed[2]);
-	glRotatef((vec.y) * 180, rightFixed[0], rightFixed[1], rightFixed[2]);
+	//glRotatef((vec.x) * 180, upFixed[0], upFixed[1], upFixed[2]);
+	//glRotatef((vec.y) * 180, rightFixed[0], rightFixed[1], rightFixed[2]);
 
 
-	glTranslatef(sceneFixedLoc[0],
-		sceneFixedLoc[1],
-		sceneFixedLoc[2]);
+	//glTranslatef(sceneFixedLoc[0],
+	//	sceneFixedLoc[1],
+	//	sceneFixedLoc[2]);
 
-	 
+	// 
 
- }
+ //}
 
 /*
 rotates the camera
@@ -132,34 +143,34 @@ rotates the camera
 /*
 rotate the scene
 */
-
- void rotateScene(){
-	if (scene.SceneRotDelta.x != 0 || scene.SceneRotDelta.y != 0){
-		glm::vec4 sceneOrgLoc(0.0, 0.0, 0.0, 1.0);
-		glm::mat4 curMetrix;
-		glGetFloatv(GL_MODELVIEW_MATRIX, &curMetrix[0][0]);
-		glm::vec4 sceneFixedLoc = sceneOrgLoc*curMetrix;
-		glTranslatef(sceneFixedLoc[0] * -1,
-			sceneFixedLoc[1] * -1,
-			sceneFixedLoc[2] * -1);
-		//Vector3f totalTranslation = scene.CameraLocation + scene.SceneLocation;
-		
-		
-		//glTranslatef(-totalTranslation.x, -totalTranslation.y,-totalTranslation.z);
-		glRotatef((scene.SceneRotDelta.x) * 180, 0, 1, 0);
-		glRotatef((scene.SceneRotDelta.y) * 180, 1, 0, 0);
-		//glTranslatef(totalTranslation.x, totalTranslation.y, totalTranslation.z);
-
-		glTranslatef(sceneFixedLoc[0],
-			sceneFixedLoc[1],
-			sceneFixedLoc[2]);
-		scene.SceneRotate += scene.SceneRotDelta;
-		scene.SceneRotDelta.x = 0;
-		scene.SceneRotDelta.y = 0;
-	}
-}
-
-
+//
+// void rotateScene(){
+//	if (scene.SceneRotDelta.x != 0 || scene.SceneRotDelta.y != 0){
+//		glm::vec4 sceneOrgLoc(0.0, 0.0, 0.0, 1.0);
+//		glm::mat4 curMetrix;
+//		glGetFloatv(GL_MODELVIEW_MATRIX, &curMetrix[0][0]);
+//		glm::vec4 sceneFixedLoc = sceneOrgLoc*curMetrix;
+//		glTranslatef(sceneFixedLoc[0] * -1,
+//			sceneFixedLoc[1] * -1,
+//			sceneFixedLoc[2] * -1);
+//		//Vector3f totalTranslation = scene.CameraLocation + scene.SceneLocation;
+//		
+//		
+//		//glTranslatef(-totalTranslation.x, -totalTranslation.y,-totalTranslation.z);
+//		glRotatef((scene.SceneRotDelta.x) * 180, 0, 1, 0);
+//		glRotatef((scene.SceneRotDelta.y) * 180, 1, 0, 0);
+//		//glTranslatef(totalTranslation.x, totalTranslation.y, totalTranslation.z);
+//
+//		glTranslatef(sceneFixedLoc[0],
+//			sceneFixedLoc[1],
+//			sceneFixedLoc[2]);
+//		scene.SceneRotate += scene.SceneRotDelta;
+//		scene.SceneRotDelta.x = 0;
+//		scene.SceneRotDelta.y = 0;
+//	}
+//}
+//
+//
 
 
 
@@ -240,13 +251,12 @@ rotate the scene
 
  Vector3f ListcomCalc(vector<Group*> &groups){
 
-	 glm::vec4 result(0.0, 0.0, 0.0, 1.0);
 	 
+	 Vector3f result(0, 0, 0);
 	 int verCount=0;
 	 for(int i=0;i<groups.size();i++){
 		 
-		 glm::mat4 * M = &groups.at(i)->M;
-		 glm::vec4 sub_result(0.0, 0.0, 0.0, 1.0);
+		  
 
 		 for(int j=0;j<groups[i]->faces->size();j++){
 			
@@ -255,19 +265,19 @@ rotate the scene
 				 int verInd = groups[i]->faces->at(j).vertice->at(k)-1;
 				 Vector3f *vertix = &scene.vertices[verInd];
 
-				 sub_result.x += vertix->x;
-				 sub_result.y += vertix->y;
-				 sub_result.z += vertix->z;
+				 result.x += vertix->x;
+				 result.y += vertix->y;
+				 result.z += vertix->z;
 			 }
 		 }
-		 glm::vec4 vec = sub_result * (*M);
-		 result += vec;
+		 
 	 }
-	 result.x /= verCount;
-	 result.y /= verCount;
-	 result.z /= verCount;
-
-	 return Vector3f(result.x, result.y, result.z);
+	 if (verCount != 0){
+		 result.x /= verCount;
+		 result.y /= verCount;
+		 result.z /= verCount;
+	 }
+	 return result;
 
  }
 

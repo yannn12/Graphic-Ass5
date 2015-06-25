@@ -5,13 +5,16 @@
 
  void setCamera();
  void setGlobal(); 
- void moveCamera();
- void rotateCamera();
- void rotateScene();
- void moveScene();
- void moveSelectedObjects();
+ void setGroupMatrix(Group &group);
+ void unsetGroupMatrix();
 
- void rotateSelectedObjects();
+ //void moveCamera();
+ //void rotateCamera();
+ //void rotateScene();
+ //void moveScene();
+ //void moveSelectedObjects();
+
+ //void rotateSelectedObjects();
 
 
  Vector3f ListcomCalc(vector<Group*> &groups);

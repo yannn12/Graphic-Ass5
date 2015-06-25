@@ -8,6 +8,9 @@ Group::Group() : M()
 {  
 	 
 }
+Group::~Group(){
+
+}
 
 void freeObject3d(struct object3D &obj)
 {

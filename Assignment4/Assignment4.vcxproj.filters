@@ -1,39 +1,111 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="CameraMode.cpp" />
-    <ClCompile Include="drawing.cpp" />
-    <ClCompile Include="GlobalMode.cpp" />
-    <ClCompile Include="Keybaord.cpp" />
-    <ClCompile Include="MatrixHandler.cpp" />
-    <ClCompile Include="Mouse.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="object3d.cpp" />
-    <ClCompile Include="parser.cpp" />
-    <ClCompile Include="PickingList.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="PickMode.cpp" />
-    <ClCompile Include="State.cpp" />
-    <ClCompile Include="TranslationPickMode.cpp" />
-    <ClCompile Include="RotationPickMode.cpp" />
-    <ClCompile Include="ScalePickMode.cpp" />
+    <ClCompile Include="CameraMode.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="drawing.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalMode.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Keybaord.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixHandler.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="object3d.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="PickingList.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="PickMode.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="RotationPickMode.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="ScalePickMode.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="TranslationPickMode.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="parser.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CameraMode.h" />
-    <ClInclude Include="drawing.h" />
-    <ClInclude Include="GlobalMode.h" />
-    <ClInclude Include="PickingList.h" />
-    <ClInclude Include="object3d.h" />
-    <ClInclude Include="PickMode.h" />
-    <ClInclude Include="Keybaord.h" />
-    <ClInclude Include="MatrixHandler.h" />
-    <ClInclude Include="Mouse.h" />
-    <ClInclude Include="parser.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="State.h" />
-    <ClInclude Include="Vector3f.h" />
-    <ClInclude Include="TranslationPickMode.h" />
-    <ClInclude Include="RotationPickMode.h" />
-    <ClInclude Include="ScalePickMode.h" />
+    <ClInclude Include="CameraMode.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="drawing.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalMode.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Keybaord.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixHandler.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="object3d.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="parser.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PickingList.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PickMode.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="RotationPickMode.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ScalePickMode.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TranslationPickMode.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3f.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{65cbff58-328a-445f-a7f9-da8201474bde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{bcef5c86-831f-4ecb-8431-65fa4ba168a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

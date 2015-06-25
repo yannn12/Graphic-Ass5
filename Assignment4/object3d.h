@@ -18,14 +18,18 @@ public:
 	int name;
 	 
 	vector<Face> *faces;
+
 	Vector3f centerOfMass;
 	Vector3f rotation, translation;
+	
+	float scale;
 
 	glm::mat4 M;
+
 	
 
-	float scale;
 	Group();
+	~Group();
 
 };
 

@@ -82,9 +82,19 @@ void PickMode::mouse(int button, int state, int x, int y){
 
 		gluPickMatrix((GLdouble)x, (GLdouble)viewport[3] - y, 1, 1, viewport); //change matrices so only the area of the picking pixel can be seen.
 
-		gluPerspective(scene.camera.fieldOfViewAngle, 1, 2, 200);//return to perspective state 
-		glTranslatef(0, 0, -100);
+		//gluPerspective(scene.camera.fieldOfViewAngle, 1, 2, 200);//return to perspective state 
+		//glTranslatef(0, 0, -100);
 
+		gluPerspective(scene.camera.fieldOfViewAngle, 1, 2, 200);
+
+
+		glRotatef(scene.camera.Rotation.x, 0, 1, 0);
+		glRotatef(scene.camera.Rotation.y, 1, 0, 0);
+
+		glTranslatef(scene.camera.Translation.x, scene.camera.Translation.y, scene.camera.Translation.z);
+
+
+		/**************/
 		glMatrixMode(GL_MODELVIEW);
 		drawObj(GL_SELECT); //draws board on background
 
