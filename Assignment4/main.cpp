@@ -45,13 +45,7 @@ void init()
 	glReadBuffer(GL_BACK);
 
 
-	glMatrixMode(GL_PROJECTION); /* switch matrix mode */
-	glLoadIdentity();		//load Identity matrix
-	
-	//defines view mode
-	scene.fieldOfViewAngle = 60;
-	gluPerspective(scene.fieldOfViewAngle, 1, 2, 200);
-	glTranslatef(0, 0, -100);
+ 
  
 	
 	glEnable(GL_DEPTH_TEST);  //define in which order the scene will built
@@ -112,30 +106,18 @@ void mydisplay()
 	glDrawBuffer(GL_BACK);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //clear back buffer	
 
- 
-	//glRotatef(0.1, 0, 1,0 ); //rotate scene
-	
-	 
+	setCamera(); 
+	setGlobal();
 	drawAxisLines();
 	 
-	setProjectionMatrix();
 	
-	moveScene();
-	moveCamera();
-	rotateScene();
-	rotateCamera();
-	moveSelectedObjects();
-	rotateSelectedObjects();
-	 
-
-
-	
-	glPushMatrix();
-	setScale();
-	glEnable(GL_LIGHTING);
+ 	glEnable(GL_LIGHTING);
 	drawObj(GL_RENDER);
 	glDisable(GL_LIGHTING);
-	drawCom();
+
+	
+
+	/*drawCom();*/
 	glPopMatrix();
 
 	
@@ -170,7 +152,7 @@ int main(int  argc, char** argv)
 	init();
 	initLight();
 
-	ParseFile("doll.obj", scene);
+	ParseFile("simple.obj", scene);
 	glutDisplayFunc(mydisplay);
 	glutMouseFunc(mouse);
 	glutMotionFunc(mouseMotion);

@@ -16,12 +16,16 @@ typedef struct Face{
 class Group{
 public:
 	int name;
-	glm::mat4  matrix;
+	 
 	vector<Face> *faces;
 	Vector3f centerOfMass;
 	Vector3f rotation, translation;
+
+	glm::mat4 M;
+	
+
 	float scale;
-//	Group();
+	Group();
 
 };
 

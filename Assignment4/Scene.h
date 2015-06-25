@@ -23,6 +23,29 @@ typedef struct Vector2f{
 };
 
 
+typedef struct Camera{
+
+	 
+	Vector3f Translation;
+	Vector3f Rotation;
+	float fieldOfViewAngle;
+
+
+};
+
+typedef struct Global{
+
+
+	Vector3f Translation;
+	Vector3f Rotation;
+	float scale;
+	 
+
+
+};
+
+
+
 class Scene
 {
 public:
@@ -31,26 +54,26 @@ public:
 	 vector<Vector3f> normals;
 	 vector<object3D*> objects;
 
-	 vector<Group*> selectedObjs;
+	/* vector<Group*> selectedObjs;*/
 
-	 int Buttom;
-
+	 Camera camera;
+	 Global global;
 
 	 Vector3f SceneLocation;
 	 Vector3f SceneDelta;
-	 Vector3f CameraLocation;
+	  
 	 
-	 Vector3f CameraLocDelta;
+	 
 	 Vector3f SceneRotate;
 	 Vector3f SceneRotDelta;
-	 Vector3f CameraRotate;
-	 Vector3f CameraRotDelta;
+	  
+
+	 
 
 	 Vector3f SelectObjLocDelta;
 	 Vector3f SelectObjRotDelta;
 
-	 float fieldOfViewAngle;
-	 bool  fieldofViewChaned;
+	 
 
 	 float scaleFactor;
 	 bool scaleFactorChanged;

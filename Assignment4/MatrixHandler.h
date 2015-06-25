@@ -3,8 +3,8 @@
 #include "Vector3f.h"
 #include "object3d.h"
 
- void setProjectionMatrix();
- void setScale();
+ void setCamera();
+ void setGlobal(); 
  void moveCamera();
  void rotateCamera();
  void rotateScene();
@@ -14,6 +14,7 @@
  void rotateSelectedObjects();
 
 
- Vector3f comCalc(vector<Group*> groups);
+ Vector3f ListcomCalc(vector<Group*> &groups);
  Vector3f comCalc(Group *group);
 
+ 

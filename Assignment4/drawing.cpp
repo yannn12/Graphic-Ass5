@@ -66,24 +66,13 @@ void drawObj(GLenum mode){
 			vector<Face> *faces = grp->faces;
 			
 
-			GLfloat orgMat[4*4];
+			GLfloat worldMat[16];
 
-		/*	GLfloat * martix = &(grp->matrix[0][0]);
+			GLfloat * groupMatrix = &(grp->M[0][0]);
 
-			
-			glGetFloatv(GL_MODELVIEW_MATRIX, orgMat);
-			glLoadMatrixf(martix);
-			glMultMatrixf(orgMat);*/
-			if (!grp->scale!= 1 && grp->scale > 0){
-				glScalef(grp->scale, grp->scale, grp->scale);
-			}
-			if (!grp->rotation.isZero()){
-				glRotatef((grp->rotation.x) * 180, 0, 1, 0);
-				glRotatef((grp->rotation.y) * 180, 1, 0, 0);
-			}
-			if (!grp->translation.isZero()){
-				glTranslatef(grp->translation.x, grp->translation.y, grp->translation.z);
-			}
+			glGetFloatv(GL_MODELVIEW_MATRIX, worldMat);
+			glLoadMatrixf(worldMat);
+			glMultMatrixf(groupMatrix);
 			
 			int facesNum = faces->size();
 			//glPushMatrix();
@@ -115,19 +104,8 @@ void drawObj(GLenum mode){
 			}
 			if(mode==GL_SELECT)
 				glPopName(); 
-		/*	if (mode != GL_SELECT){
-				
-				glPopMatrix();
-				glDisable(GL_LIGHTING);
-				glPushMatrix();
 
-				glTranslatef(grp->centerOfMass.x, grp->centerOfMass.y, grp->centerOfMass.z);
-				glColor3f(0.3f, 0.0f, 0.0f);
-				glutSolidSphere(1, 5, 5);
-			 
-				glPopMatrix();
-				glEnable(GL_LIGHTING);
-			}*/
+			glPopMatrix();
 		}
 
 

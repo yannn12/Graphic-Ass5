@@ -1,4 +1,5 @@
 #include "PickingList.h"
+#include "MatrixHandler.h"
 #include "Scene.h"
 #include <vector>
 
@@ -47,6 +48,11 @@ bool PickingList::toggle(pick &p){
 	 
 	}
 	return !found;
+}
+
+void PickingList::clacCenterOfmass(){
+
+	this->centerOfmass = ListcomCalc(selectedGroups);
 }
 
 vector <Group *> * PickingList::getSelectedGroups() {

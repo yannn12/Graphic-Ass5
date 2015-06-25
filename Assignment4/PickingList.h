@@ -1,6 +1,8 @@
 #pragma once
 
 #include "object3d.h"
+#include "vector3f.h"
+
 #include <vector>
  
 typedef  unsigned int uint;
@@ -9,6 +11,7 @@ typedef  unsigned int uint;
 struct pick  {
 	uint object;
 	uint group;
+	
 };
 class PickingList:
 	public std::vector<pick>
@@ -22,6 +25,9 @@ public:
 	bool toggle(pick &p);
 	
 	vector <Group *> * getSelectedGroups();
+	Vector3f centerOfmass;
+
+	void clacCenterOfmass();
 	void clearPick();
  
 	PickingList();

@@ -3,16 +3,18 @@
 
 Scene::Scene(void) :SceneLocation(0, 0, 0), 
 					SceneDelta(0, 0, 0), 
-					CameraLocation(0, 0, 0),
-					CameraLocDelta(0, 0, 0), 
 					SceneRotate(0, 0, 0), 
 					SceneRotDelta(0, 0, 0), 
-					CameraRotate(0, 0, 0), 
-					CameraRotDelta(0, 0, 0), 
-					fieldOfViewAngle(0), 
-					fieldofViewChaned(false), 
 					scaleFactor(1),	 scaleFactorChanged(false)
+					
 {
+	camera.fieldOfViewAngle = 60;
+	camera.Rotation.makeZero();
+	camera.Translation = Vector3f(0, 0, -100);
+
+	global.scale = 1;
+	global.Rotation.makeZero();
+	global.Translation = Vector3f(0, 0, 0);
 }
 
 
@@ -23,7 +25,7 @@ Scene::~Scene(void)
 
 void Scene::reset( )
 {
-	SceneLocation.makeZero();
+	/*SceneLocation.makeZero();
 	SceneDelta.makeZero();
 	CameraLocation.makeZero();
 	CameraLocDelta.makeZero();
@@ -34,6 +36,6 @@ void Scene::reset( )
 	fieldOfViewAngle=(0);
 	fieldofViewChaned=(false);
 	scaleFactor=(1);
-	scaleFactorChanged=(false);
+	scaleFactorChanged=(false);*/
 
 }

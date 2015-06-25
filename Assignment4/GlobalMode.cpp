@@ -11,37 +11,31 @@ static Vector3f zeroVec(0,0,0);
 void GlobalMode::mouse(int button, int state, int x, int y){
 	if(state ==GLUT_DOWN){
 		pressState = button;
-		pressX =x;
+		pressX = x;
 		pressY = y;
 		
 	}
-	else{
-		this->scene.SceneLocation+= this->scene.SceneDelta;
-		this->scene.SceneDelta = zeroVec;
-		this->scene.SceneRotate+= this->scene.SceneRotDelta;
-		this->scene.SceneRotDelta = zeroVec;
-	}
+	 
 
 }
 void GlobalMode::mouseMotion(int x, int y){
 	if(pressState == GLUT_RIGHT_BUTTON){
-		this->scene.SceneDelta.x += ((0.0+x-pressX)/W_WIDTH)*50;
-		this->scene.SceneDelta.y -= ((0.0+y-pressY)/W_HEIGHT)*50;
-		pressX = x;
-		pressY = y;
+		scene.global.Translation.x += (((float)x - pressX) / W_WIDTH) * 50;
+		scene.global.Translation.y -= (((float)y - pressY) / W_HEIGHT) * 50;
+		
 	}
 	else if(pressState == GLUT_MIDDLE_BUTTON){
-		this->scene.SceneDelta.z += ((0.0+y-pressY)/W_HEIGHT)*50;
-		pressX = x;
-		pressY = y;
+		scene.global.Translation.z += (((float)y - pressY) / W_HEIGHT) * 50;
+		
 	}
 	else if(pressState ==GLUT_LEFT_BUTTON )
 	{
-		this->scene.SceneRotDelta.x += ((0.0+x-pressX)/W_WIDTH);
-		this->scene.SceneRotDelta.y += ((0.0+y-pressY)/W_HEIGHT);
-		pressX = x;
-		pressY = y;
+		scene.global.Rotation.x += (((float)x - pressX) / W_WIDTH) *50 ;
+		scene.global.Rotation.y += (((float)y - pressY) / W_HEIGHT) *50 ;
+		
 	}
+	pressX = x;
+	pressY = y;
 }
 
 

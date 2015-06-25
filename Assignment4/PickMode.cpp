@@ -6,6 +6,7 @@
 #include "ScalePickMode.h"
 #include "TranslationPickMode.h"
 
+
 #define PICK_BUFSIZE 512
 
 extern State * ScaneState;
@@ -81,7 +82,7 @@ void PickMode::mouse(int button, int state, int x, int y){
 
 		gluPickMatrix((GLdouble)x, (GLdouble)viewport[3] - y, 1, 1, viewport); //change matrices so only the area of the picking pixel can be seen.
 
-		gluPerspective(scene.fieldOfViewAngle, 1, 2, 200);//return to perspective state 
+		gluPerspective(scene.camera.fieldOfViewAngle, 1, 2, 200);//return to perspective state 
 		glTranslatef(0, 0, -100);
 
 		glMatrixMode(GL_MODELVIEW);
@@ -104,14 +105,18 @@ void PickMode::mouse(int button, int state, int x, int y){
 
 		case ROTATE:
 			printf("Entering rotate mode.\n");
+			pickingList.clacCenterOfmass();
 			ScaneState = &RotationPickState;
+			
 			break;
 		case SCALE:
 			printf("Entering scale mode.\n");
+			pickingList.clacCenterOfmass();
 			ScaneState = &ScalePickState;
 			break;
 		case TRANSLATE:
 			printf("Entering translate mode.\n");
+			pickingList.clacCenterOfmass();
 			ScaneState = &TranslationPickState;
 			break;
 		}

@@ -20,50 +20,50 @@ extern PickMode pickState;
 
 void resetAllMatrices(){
 	 
- 	glMatrixMode(GL_PROJECTION); /* switch matrix mode */
-	glLoadIdentity();		//load Identity matrix
+ //	glMatrixMode(GL_PROJECTION); /* switch matrix mode */
+	//glLoadIdentity();		//load Identity matrix
 
-	//defines view mode
-	scene.fieldOfViewAngle = 60;
-	gluPerspective(scene.fieldOfViewAngle, 1, 2, 200);
-	glTranslatef(0, 0, -100);
+	////defines view mode
+	//scene.fieldOfViewAngle = 60;
+	//gluPerspective(scene.fieldOfViewAngle, 1, 2, 200);
+	//glTranslatef(0, 0, -100);
 
-	 /* return to modelview mode */
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	// /* return to modelview mode */
+	//glMatrixMode(GL_MODELVIEW);
+	//glLoadIdentity();
 
-	 
-	glMatrixMode(GL_PROJECTION); /* switch matrix mode */
-	glLoadIdentity();		//load Identity matrix
+	// 
+	//glMatrixMode(GL_PROJECTION); /* switch matrix mode */
+	//glLoadIdentity();		//load Identity matrix
 
-	//defines view mode
-	scene.fieldOfViewAngle = 60;
-	gluPerspective(scene.fieldOfViewAngle, 1, 2, 200);
-	glTranslatef(0, 0, -100);
+	////defines view mode
+	//scene.fieldOfViewAngle = 60;
+	//gluPerspective(scene.fieldOfViewAngle, 1, 2, 200);
+	//glTranslatef(0, 0, -100);
 
-	/* return to modelview mode */
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	 
-	int objectNum = scene.objects.size();
+	///* return to modelview mode */
+	//glMatrixMode(GL_MODELVIEW);
+	//glLoadIdentity();
+	// 
+	//int objectNum = scene.objects.size();
 
-	for (int o = 0; o < objectNum; o++){
+	//for (int o = 0; o < objectNum; o++){
 
-		object3D *obj = scene.objects.at(o);
-		int groupNum = obj->groups->size();
+	//	object3D *obj = scene.objects.at(o);
+	//	int groupNum = obj->groups->size();
 
-		for (int g = 0; g < groupNum; g++){
+	//	for (int g = 0; g < groupNum; g++){
 
-			Group *grp = obj->groups->at(g);
-			grp->rotation.makeZero();
-			grp->scale = 1.0f;
-			grp->translation.makeZero();
+	//		Group *grp = obj->groups->at(g);
+	//		grp->rotation.makeZero();
+	//		grp->scale = 1.0f;
+	//		grp->translation.makeZero();
 
 
-		}
-	}
+	//	}
+	//}
 
-	scene.reset();
+	//scene.reset();
 }
 
 //void switchState(){
@@ -108,10 +108,10 @@ void processNormalKeys(unsigned char key, int x, int y)
 		break;
 
 	case 'z':
-		printf("camera  location: (%f, %f, %f)\n", scene.CameraLocation.x, scene.CameraLocation.y, scene.CameraLocation.z);
-		printf("scene   location: (%f, %f, %f)\n", scene.SceneLocation.x, scene.SceneLocation.y, scene.SceneLocation.z);
-		printf("camera Rotattion: (%f, %f, %f)\n", scene.CameraRotate.x, scene.CameraRotate.y, scene.CameraRotate.z);
-		printf("scene  Rotattion: (%f, %f, %f)\n\n", scene.SceneRotate.x, scene.SceneRotate.y, scene.SceneRotate.z);
+		printf("camera  location: (%f, %f, %f)\n", scene.camera.Translation.x, scene.camera.Translation.y, scene.camera.Translation.z);
+		printf("scene   location: (%f, %f, %f)\n", scene.global.Translation.x, scene.global.Translation.y, scene.global.Translation.z);
+		printf("camera Rotattion: (%f, %f, %f)\n", scene.camera.Rotation.x, scene.camera.Rotation.y, scene.camera.Rotation.z);
+		printf("scene  Rotattion: (%f, %f, %f)\n\n", scene.global.Rotation.x, scene.global.Rotation.y, scene.global.Rotation.z);
 		break;
 	default: 
 		ScaneState->processNormalKeys(key, x, y);
@@ -126,11 +126,11 @@ void processSpecialKeys(int key, int xx, int yy){
 
 	case GLUT_KEY_F2:
 
-		if (scene.fieldOfViewAngle < 180){
+		if (scene.camera.fieldOfViewAngle < 180){
 
 
-			scene.fieldOfViewAngle += DELTA_CHANGE_OF_VIEW;
-			scene.fieldofViewChaned = true;
+			scene.camera.fieldOfViewAngle += DELTA_CHANGE_OF_VIEW;
+			 
 		}
 
 		break;
@@ -138,11 +138,11 @@ void processSpecialKeys(int key, int xx, int yy){
 	case GLUT_KEY_F3:
 
 
-		if (scene.fieldOfViewAngle > 0){
+		if (scene.camera.fieldOfViewAngle > 0){
 
 
-			scene.fieldOfViewAngle -= DELTA_CHANGE_OF_VIEW;
-			scene.fieldofViewChaned = true;
+			scene.camera.fieldOfViewAngle -= DELTA_CHANGE_OF_VIEW;
+		 
 
 		}
 

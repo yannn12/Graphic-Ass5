@@ -1,7 +1,7 @@
 #include "RotationPickMode.h"
 #include "PickMode.h"
 #include "PickingList.h"
-
+#include <glm/gtx/transform.hpp>
 
 
 static int pressX=0;
@@ -41,11 +41,32 @@ void RotationPickMode::mouseMotion(int x, int y){
 	}
 	else if(pressState ==GLUT_LEFT_BUTTON )
 	{
-		 
+		Vector3f *com = &pickinglist->centerOfmass;
+		
 		vector<Group *> * selectedGroups = pickinglist->getSelectedGroups();
 		for (std::vector<Group *>::iterator grp = selectedGroups->begin(); grp != selectedGroups->end(); ++grp){
-			(*grp)->rotation.x += ((0.0 + x - pressX) / W_WIDTH);
-			(*grp)->rotation.y += ((0.0 + y - pressY) / W_HEIGHT);
+			glm::mat4 *M = &(*grp)->M;
+			
+		 
+			float  rotx= ((0.0 + x - pressX) / W_WIDTH)*180;
+			float  roty = ((0.0 + y - pressY) / W_HEIGHT) *180; 
+
+			//rotate:
+
+			glPushMatrix();
+			
+			glLoadMatrixf( &(*M)[0][0]);
+			glTranslatef(com->x, com->y, com->z);
+
+			glRotatef(rotx, 0,1,0);
+			glRotatef(roty, 1, 0,0);
+	
+			glTranslatef(-com->x, -com->y, -com->z);
+			glGetFloatv(GL_MODELVIEW_MATRIX, &(*M)[0][0]);
+
+			glPopMatrix();
+			 
+ 
 		}
 		
 		pressX = x;
