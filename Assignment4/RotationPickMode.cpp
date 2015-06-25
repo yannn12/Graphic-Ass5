@@ -31,10 +31,7 @@ void RotationPickMode::mouse(int button, int state, int x, int y){
 
 void RotationPickMode::mouseMotion(int x, int y){
 	if(pressState == GLUT_RIGHT_BUTTON){
-		//this->scene.SelectObjRotDelta.x += ((0.0+x-pressX)/W_WIDTH);
-		//this->scene.SelectObjRotDelta.y -= ((0.0+y-pressY)/W_HEIGHT);
-		//pressX = x;
-		//pressY = y;
+
 	}
 	else if(pressState == GLUT_MIDDLE_BUTTON){
 
@@ -67,7 +64,7 @@ void RotationPickMode::mouseMotion(int x, int y){
 			glTranslatef(-com.x, -com.y, -com.z);
 			glGetFloatv(GL_MODELVIEW_MATRIX, &(*M)[0][0]);
 			glm::vec4 com((*grp)->centerOfMass.x, (*grp)->centerOfMass.y, (*grp)->centerOfMass.z, 1);
-			com = com * (*M);
+			com = (*M) *com;
 			(*grp)->centerOfMass = Vector3f(com.x, com.y, com.z);
 			glPopMatrix();
 			

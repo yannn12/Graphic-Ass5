@@ -35,13 +35,33 @@ void ScalePickMode::mouse(int button, int state, int x, int y){
 
 void ScalePickMode::mouseMotion(int x, int y){
 	if (pressState == GLUT_LEFT_BUTTON){
+
+		Vector3f com = pickinglist->centerOfmass;
 		vector<Group *> * selectedGroups = pickinglist->getSelectedGroups();
+
+	 
 		for (std::vector<Group *>::iterator grp = selectedGroups->begin(); grp != selectedGroups->end(); ++grp){
+			glPushMatrix();
+			glm::mat4 *M = &(*grp)->M;
+
+			glLoadMatrixf( &(*M)[0][0]);
+			
+			float scale;
+
 			if (x - pressX != 0)
-				(*grp)->scale *= 1+((0.0 + x - pressX) / W_WIDTH) ;
+				scale = 1 + ((0.0 + x - pressX) / W_WIDTH);
 			if (y - pressY != 0)
-			(*grp)->scale *= 1+((0.0 + y - pressY) / W_HEIGHT) ;
-			//printf("scale of group : %f", (*grp)->scale);
+				scale = 1 + ((0.0 + y - pressY) / W_HEIGHT);
+			
+			glTranslatef(com.x, com.y, com.z);
+			glScalef(scale, scale, scale);
+			glTranslatef(-com.x, -com.y, -com.z);
+			
+			glGetFloatv(GL_MODELVIEW_MATRIX, &(*M)[0][0]);
+			glm::vec4 com((*grp)->centerOfMass.x, (*grp)->centerOfMass.y, (*grp)->centerOfMass.z, 1);
+			com = (*M) *com;
+			(*grp)->centerOfMass = Vector3f(com.x, com.y, com.z);
+			glPopMatrix();
 		}
 		
 		pressX = x;

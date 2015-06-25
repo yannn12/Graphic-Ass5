@@ -61,6 +61,8 @@ void drawObj(GLenum mode){
 		for (size_t g = 0; g < groupNum; g++){
 			Group * grp = scene.objects[o]->groups->at(g);
 			vector<Face> *faces = grp->faces;
+		
+
 			setGroupMatrix(*grp);
 		/*	glPushMatrix();
 
@@ -101,12 +103,13 @@ void drawObj(GLenum mode){
 				}
 				
 				glEnd();
+
 			 
 				
 			}
 			if(mode==GL_SELECT)
 				glPopName(); 
-
+	
 			unsetGroupMatrix();	
 
 		}
@@ -124,20 +127,20 @@ void drawCom(){
 
 		SelectedGroups = pickState.pickingList.getSelectedGroups();
 		glClear(GL_DEPTH_BUFFER_BIT);
-		glDisable(GL_LIGHTING);
+	 
 		for (std::vector<Group *>::iterator it = SelectedGroups->begin(); it != SelectedGroups->end() ; ++it){
 		 
 
 			Group * grp = (*it);		 
 			
 
-
-			setGroupMatrix(*grp);
-
+			
+	 
+			glTranslatef(grp->centerOfMass.x, grp->centerOfMass.y, grp->centerOfMass.z);
 			glColor3f(1.0f, 0.0f, 0.0f);
 			glutSolidSphere(0.3, 5, 5);
 		
-			unsetGroupMatrix();
+			
 			
 		}
 		
