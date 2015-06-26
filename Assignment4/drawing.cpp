@@ -42,13 +42,13 @@ void drawAxisLines(){
 
 
 void drawObj(GLenum mode){
-
+	glAlphaFunc(GL_LESS, 0.5);	
 	int objectNum = scene.objects.size();
 
 	//glEnable(GL_LIGHTING);
 	//glDisable(GL_COLOR_MATERIAL);
 
-	
+	glEnable(GL_LIGHTING);
 	glPushMatrix();
 
 	for (size_t o = 0; o < objectNum; o++){
@@ -118,7 +118,8 @@ void drawObj(GLenum mode){
 
 	}
 	glPopMatrix();
-	
+	glFlush();
+	glDisable(GL_LIGHTING);
 
 }
 
@@ -127,7 +128,7 @@ void drawCom(){
 		vector <Group *> * SelectedGroups;
 
 		SelectedGroups = pickState.pickingList.getSelectedGroups();
-		glClear(GL_DEPTH_BUFFER_BIT);
+		glDisable(GL_DEPTH_TEST);
 	 
 		for (std::vector<Group *>::iterator it = SelectedGroups->begin(); it != SelectedGroups->end() ; ++it){
 		 
@@ -144,6 +145,6 @@ void drawCom(){
 			
 		}
 		
-		
+		glEnable(GL_DEPTH_TEST);
 	
 }

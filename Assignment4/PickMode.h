@@ -14,7 +14,7 @@ public:
 
 	Mode mode;
 	bool press;
-	float zValue[4];
+
 	PickingList pickingList;
 
 	PickMode(Scene& scene);

@@ -42,12 +42,15 @@ void init()
 {
  
 	glClearColor(0, 0, 0, 1); //black background
-	glReadBuffer(GL_BACK);
+	glEnable(GL_DEPTH_TEST);
+	/*glReadBuffer(GL_BACK);*/
 	
-	glEnable(GL_DEPTH_TEST);  //define in which order the scene will built
+	glMatrixMode(GL_MODELVIEW); /* switch matrix mode */
+	
+ 
+
+ 
 	 
-	/* return to modelview mode */
-	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
 }
@@ -98,10 +101,10 @@ void initLight()
  
 void mydisplay()
 {
-	glDrawBuffer(GL_BACK);
+	 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //clear back buffer	
 
-	setCamera(); 
+	setCamera();	
 	setGlobal();
 	drawAxisLines();
 	 
@@ -112,10 +115,10 @@ void mydisplay()
 
 	
 	
-	
-	
+	glFlush();
+	/*
 	glutSwapBuffers();
-	
+	*/
 
 }
 
@@ -133,7 +136,7 @@ void disp(int value)
 int main(int  argc, char** argv)
 {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(W_WIDTH, W_HEIGHT);
 	glutCreateWindow("scene.obj");
 
